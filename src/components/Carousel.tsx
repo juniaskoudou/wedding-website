@@ -34,6 +34,16 @@ export default function Carousel() {
                   className={styles.img}
                   draggable={false}
                 />
+                {(photo.date || photo.location) && (
+                  <figcaption className={styles.caption}>
+                    {photo.date && (
+                      <span className={styles.captionLine}>{photo.date}</span>
+                    )}
+                    {photo.location && (
+                      <span className={styles.captionLine}>{photo.location}</span>
+                    )}
+                  </figcaption>
+                )}
               </div>
             </div>
           ))}

@@ -33,9 +33,10 @@ export const milestones: Milestone[] = [
 ]
 
 // The intro line above the milestones. The highlighted word is rendered
-// in the accent colour + italic.
+// in the accent colour + italic. Split across two lines on purpose.
 export const milestonesIntro = {
   before: "The ",
   highlight: "Fifteenth",
-  after: " keeps appearing like the it belongs to us.",
+  afterLine1: " keeps appearing",
+  line2: "like the it belongs to us.",
 }

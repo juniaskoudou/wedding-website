@@ -1,7 +1,7 @@
 .section {
   position: relative;
   width: 100%;
-  padding: 0 0 4rem;
+  padding: 0;
 }
 
 .viewport {
@@ -33,4 +33,25 @@
 .img {
   object-fit: cover;
   user-select: none;
+}
+
+.caption {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding-right: 12px;
+  pointer-events: none;
+  color: rgba(38, 49, 37, 0.3);
+}
+
+.captionLine {
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }

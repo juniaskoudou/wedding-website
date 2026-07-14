@@ -44,30 +44,32 @@ export default function Expect() {
         {expectHeading.after}
       </h2>
 
-      <div className={styles.viewport} ref={emblaRef}>
-        <div className={styles.container}>
-          {expectCards.map((card, i) => (
-            <article
-              key={card.title}
-              className={`${styles.card}${i === selected ? ` ${styles.active}` : ""}`}
-              aria-current={i === selected}
-            >
-              <h3 className={styles.cardTitle}>{card.title}</h3>
-              <p className={styles.cardBody}>{card.body}</p>
-            </article>
-          ))}
+      <div className={styles.content}>
+        <div className={styles.viewport} ref={emblaRef}>
+          <div className={styles.container}>
+            {expectCards.map((card, i) => (
+              <article
+                key={card.title}
+                className={`${styles.card}${i === selected ? ` ${styles.active}` : ""}`}
+                aria-current={i === selected}
+              >
+                <h3 className={styles.cardTitle}>{card.title}</h3>
+                <p className={styles.cardBody}>{card.body}</p>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <div className={styles.track} aria-hidden>
-        <span
-          className={styles.fill}
-          style={{ transform: `scaleX(${progress})` }}
-        />
-        <span
-          className={styles.dot}
-          style={{ left: `calc(${progress} * (100% - 9px))` }}
-        />
+        <div className={styles.track} aria-hidden>
+          <span
+            className={styles.fill}
+            style={{ transform: `scaleX(${progress})` }}
+          />
+          <span
+            className={styles.dot}
+            style={{ left: `calc(${progress} * (100% - 9px))` }}
+          />
+        </div>
       </div>
     </section>
   )

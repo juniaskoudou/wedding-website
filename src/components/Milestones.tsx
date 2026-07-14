@@ -7,81 +7,79 @@ import styles from "./Milestones.module.css"
 
 export default function Milestones() {
   const [active, setActive] = useState(0)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const itemRefs = useRef<Array<HTMLLIElement | null>>([])
 
   useEffect(() => {
-    const wrapper = scrollRef.current
-    if (!wrapper) return
-    const count = milestones.length
-    let raf = 0
-    let last = -1
+    const items = itemRefs.current.filter(Boolean) as HTMLLIElement[]
+    if (!items.length) return
 
-    const apply = () => {
-      raf = 0
-      const rect = wrapper.getBoundingClientRect()
-      const travel = wrapper.offsetHeight - window.innerHeight
-      if (travel <= 0) return
-      const scrolled = Math.min(Math.max(-rect.top, 0), travel)
-      const progress = scrolled / travel
-      // Equal segment per milestone; the pin only releases once the last one
-      // has been reached.
-      const idx = Math.min(count - 1, Math.floor(progress * count))
-      if (idx !== last) {
-        last = idx
-        setActive(idx)
-      }
-    }
+    // A thin trigger band across the middle of the viewport. Whichever
+    // milestone crosses it (closest to centre) becomes active; if none is in
+    // the band we keep the current one.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const mid = window.innerHeight / 2
+        let best: number | null = null
+        let bestDist = Infinity
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue
+          const i = items.indexOf(entry.target as HTMLLIElement)
+          const r = entry.boundingClientRect
+          const center = r.top + r.height / 2
+          const dist = Math.abs(center - mid)
+          if (dist < bestDist) {
+            bestDist = dist
+            best = i
+          }
+        }
+        if (best !== null) setActive(best)
+      },
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    )
 
-    const onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(apply)
-    }
-
-    apply()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("resize", onScroll)
-    return () => {
-      window.removeEventListener("scroll", onScroll)
-      window.removeEventListener("resize", onScroll)
-      if (raf) cancelAnimationFrame(raf)
-    }
+    items.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
   }, [])
 
   const current = milestones[active]
 
   return (
-    <section className={styles.scroll} ref={scrollRef} aria-label="Our story">
-      <div className={styles.sticky}>
-        <p className={styles.intro}>
-          {milestonesIntro.before}
-          <em className={styles.highlight}>{milestonesIntro.highlight}</em>
-          {milestonesIntro.after}
-        </p>
+    <section className={styles.section} aria-label="Our story">
+      <p className={styles.intro}>
+        {milestonesIntro.before}
+        <em className={styles.highlight}>{milestonesIntro.highlight}</em>
+        {milestonesIntro.afterLine1}
+        <br />
+        {milestonesIntro.line2}
+      </p>
 
-        <div className={styles.body}>
-          <ol className={styles.list}>
-            {milestones.map((m, i) => (
-              <li
-                key={m.title}
-                className={`${styles.item}${i === active ? ` ${styles.active}` : ""}`}
-                aria-current={i === active}
-              >
-                <h3 className={styles.title}>{m.title}</h3>
-                <p className={styles.meta}>
-                  {m.date}
-                  <br />
-                  {m.location}
-                </p>
-              </li>
-            ))}
-          </ol>
+      <div className={styles.body}>
+        <ol className={styles.list}>
+          {milestones.map((m, i) => (
+            <li
+              key={m.title}
+              ref={(el) => {
+                itemRefs.current[i] = el
+              }}
+              className={`${styles.item}${i === active ? ` ${styles.active}` : ""}`}
+              aria-current={i === active}
+            >
+              <h3 className={styles.title}>{m.title}</h3>
+              <p className={styles.meta}>
+                {m.date}
+                <br />
+                {m.location}
+              </p>
+            </li>
+          ))}
+        </ol>
 
-          <div className={styles.polaroidCol}>
-            <Polaroid
-              color={current.color}
-              image={current.image}
-              imageAlt={current.imageAlt}
-            />
-          </div>
+        <div className={styles.polaroidCol}>
+          <Polaroid
+            color={current.color}
+            image={current.image}
+            imageAlt={current.imageAlt}
+          />
         </div>
       </div>
     </section>
