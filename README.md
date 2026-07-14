@@ -1,21 +1,26 @@
-# React + TypeScript + Vite + shadcn/ui
+# Caroline & Junias
 
-This is a template for a new Vite project with React, TypeScript, and shadcn/ui.
+Our wedding website. We're getting married on **April 15, 2027** at the **Manoir de Villefermoy** in Les Écrennes, France — and this little site is how we're sharing the day with the people we love.
 
-## Adding components
+It tells our story (the proposal in Cascais, the dowry in Brussels, and the wedding to come), shows what to expect on the day, and lets our guests RSVP. It's in both French and English, because our people are spread across a few countries.
 
-To add components to your app, run the following command:
+## Running it locally
 
 ```bash
-npx shadcn@latest add button
+npm install
+npm run dev
 ```
 
-This will place the ui components in the `src/components` directory.
+Then open [http://localhost:3000](http://localhost:3000).
 
-## Using components
+## What's inside
 
-To use the components in your app, import them as follows:
+- **Landing page** — our story, photos, and the schedule for April 15th
+- **RSVP** — guests confirm their attendance, meal choice, and who's coming with them
+- **Admin** — a private guest list to keep track of replies
 
-```tsx
-import { Button } from "@/components/ui/button"
-```
+Built with Next.js, TypeScript, and shadcn/ui.
+
+---
+
+*See you on the fifteenth.*
