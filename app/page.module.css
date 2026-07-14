@@ -1,6 +1,20 @@
 .hero {
   min-height: 100svh;
   color: #263125;
+  /* Keep the experience phone-shaped on any screen: cap the width to a mobile
+     viewport and centre it. Below this width it's a no-op, so mobile is
+     unchanged and desktop shows the same single-column layout, centred. */
+  max-width: 480px;
+  margin-inline: auto;
+  position: relative;
+}
+
+/* On wider screens, lift the centred column off the page so it reads as a
+   deliberate device-like frame rather than a stranded column. */
+@media (min-width: 768px) {
+  .hero {
+    box-shadow: 0 24px 70px -28px rgba(38, 49, 37, 0.28);
+  }
 }
 
 .langSwitch {

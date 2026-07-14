@@ -26,13 +26,13 @@ export const siteMeta: Record<Locale, { title: string; description: string; ogAl
   fr: {
     title: "Caroline & Junias vous invitent à leur mariage",
     description:
-      "Caroline & Junias se marient le 15 Avril 2027 au Manoir de Villefermoy. Découvrez notre histoire et confirmez votre présence.",
+      "Nous célébrons notre cérémonie de mariage le 15 Avril 2027 au Manoir de Villefermoy, et vous y êtes invités.",
     ogAlt: "Caroline & Junias vous invitent à leur mariage — 15 Avril 2027, Manoir de Villefermoy",
   },
   en: {
     title: "Caroline & Junias invite you to their wedding",
     description:
-      "Caroline & Junias are getting married on April 15, 2027 at Manoir de Villefermoy. Discover our story and RSVP.",
+      "We're celebrating our wedding ceremony on April 15, 2027 at Manoir de Villefermoy, and you're invited.",
     ogAlt: "Caroline & Junias invite you to their wedding — April 15, 2027, Manoir de Villefermoy",
   },
 }
