@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 64px;
+  gap: 80px;
   overflow: hidden;
 }
 
@@ -48,13 +48,13 @@
 .container {
   display: flex;
   align-items: flex-start;
-  gap: 20px;
+  gap: 64px;
   padding-inline: 24px;
   will-change: transform;
 }
 
 .card {
-  flex: 0 0 82%;
+  flex: 0 0 100%;
   min-width: 0;
   transition: opacity 0.35s ease;
   opacity: 0.4;
@@ -64,11 +64,26 @@
   opacity: 1;
 }
 
+.icon {
+  display: block;
+  width: 52px;
+  height: 52px;
+  margin: 0 0 24px;
+  background-color: var(--color-ink);
+  transition: background-color 0.35s ease;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: left center;
+  mask-position: left center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+
 .cardTitle {
   margin: 0 0 8px;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 1;
   letter-spacing: -0.15px;
   color: var(--color-ink);
@@ -79,6 +94,10 @@
   color: var(--color-terracotta);
 }
 
+.card.active .icon {
+  background-color: var(--color-terracotta);
+}
+
 .cardBody {
   margin: 0;
   font-family: var(--font-sans);
@@ -86,6 +105,7 @@
   line-height: 1.5;
   letter-spacing: -0.14px;
   color: var(--color-ink);
+  text-wrap: balance;
 }
 
 /* Progress line ------------------------------------------------------------*/
@@ -102,7 +122,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: rgba(255, 126, 70, 0.25);
+  background: rgba(38, 49, 37, 0.18);
 }
 
 .fill {

@@ -8,7 +8,7 @@ import { getLocale } from "@/lib/locale"
 import { getDictionary } from "@/lib/i18n"
 import { photoSources } from "@/data/photos"
 import { milestoneVisuals } from "@/data/milestones"
-import { closingAssets } from "@/data/expect"
+import { expectVisuals, closingAssets } from "@/data/expect"
 import styles from "./page.module.css"
 
 export default async function PublicPage() {
@@ -23,6 +23,11 @@ export default async function PublicPage() {
   const milestones = milestoneVisuals.map((visual, i) => ({
     ...visual,
     ...landing.story.milestones[i],
+  }))
+
+  const expectCards = expectVisuals.map((visual, i) => ({
+    ...visual,
+    ...landing.expect.cards[i],
   }))
 
   return (
@@ -47,7 +52,7 @@ export default async function PublicPage() {
 
       <Carousel photos={photos} />
       <Milestones milestones={milestones} intro={landing.story.intro} />
-      <Expect heading={landing.expect.heading} cards={landing.expect.cards} />
+      <Expect heading={landing.expect.heading} cards={expectCards} />
       <Rsvp
         text={landing.closing.text}
         buttonLabel={landing.closing.buttonLabel}

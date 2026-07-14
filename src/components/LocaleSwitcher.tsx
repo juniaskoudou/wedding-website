@@ -26,8 +26,8 @@ export default function LocaleSwitcher({ current }: { current: Locale }) {
           onClick={() => setLocale(loc)}
           className={
             loc === current
-              ? "font-medium text-foreground"
-              : "text-muted-foreground transition-colors hover:text-foreground"
+              ? "font-medium text-ink"
+              : "text-ink/50 transition-colors hover:text-ink"
           }
           aria-current={loc === current}
         >

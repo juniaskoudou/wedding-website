@@ -6,8 +6,12 @@ import styles from "./Expect.module.css"
 const clamp = (n: number, min: number, max: number) =>
   Math.min(max, Math.max(min, n))
 
+// Small head-start so the bar reads as "started" on the first item instead of
+// looking empty at progress 0.
+const BAR_MIN = 0.06
+
 type Heading = { before: string; highlight: string; after: string }
-type Card = { title: string; body: string }
+type Card = { title: string; body: string; icon: string }
 
 export default function Expect({
   heading,
@@ -38,7 +42,11 @@ export default function Expect({
     if (!section || !sticky || !viewport || !row) return
 
     const measure = () => {
-      const max = Math.max(0, row.scrollWidth - viewport.clientWidth)
+      // scrollWidth drops the flex container's trailing padding-right, so the
+      // last card would stop flush against the edge. Add it back so the final
+      // card ends with the same inset the first card starts with.
+      const padRight = parseFloat(getComputedStyle(row).paddingRight) || 0
+      const max = Math.max(0, row.scrollWidth + padRight - viewport.clientWidth)
       maxTranslate.current = max
       // The extra vertical scroll room = horizontal distance to pan through.
       setSectionHeight(sticky.offsetHeight + max)
@@ -106,6 +114,11 @@ export default function Expect({
                   className={`${styles.card}${i === active ? ` ${styles.active}` : ""}`}
                   aria-current={i === active}
                 >
+                  <span
+                    className={styles.icon}
+                    style={{ maskImage: `url(${card.icon})`, WebkitMaskImage: `url(${card.icon})` }}
+                    aria-hidden
+                  />
                   <h3 className={styles.cardTitle}>{card.title}</h3>
                   <p className={styles.cardBody}>{card.body}</p>
                 </article>
@@ -116,11 +129,13 @@ export default function Expect({
           <div className={styles.track} aria-hidden>
             <span
               className={styles.fill}
-              style={{ transform: `scaleX(${progress})` }}
+              style={{ transform: `scaleX(${BAR_MIN + progress * (1 - BAR_MIN)})` }}
             />
             <span
               className={styles.dot}
-              style={{ left: `calc(${progress} * (100% - 9px))` }}
+              style={{
+                left: `calc(${BAR_MIN + progress * (1 - BAR_MIN)} * (100% - 9px))`,
+              }}
             />
           </div>
         </div>
