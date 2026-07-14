@@ -64,6 +64,38 @@ export async function insertRsvp(submission: RsvpSubmission): Promise<string> {
   return id
 }
 
+export async function updateRsvp(id: string, submission: RsvpSubmission): Promise<void> {
+  await sql`
+    UPDATE rsvps
+    SET name = ${submission.name},
+        email = ${submission.email},
+        attending = ${submission.attending},
+        message = ${submission.message},
+        locale = ${submission.locale}
+    WHERE id = ${id}
+  `
+
+  // Replace attendees wholesale — simplest correct approach for edits.
+  await sql`DELETE FROM rsvp_attendees WHERE rsvp_id = ${id}`
+  for (const a of submission.attendees) {
+    await sql`
+      INSERT INTO rsvp_attendees (id, rsvp_id, name, meal, dietary_notes, is_primary)
+      VALUES (
+        ${crypto.randomUUID()},
+        ${id},
+        ${a.name},
+        ${a.meal},
+        ${a.dietaryNotes},
+        ${a.isPrimary}
+      )
+    `
+  }
+}
+
+export async function deleteRsvp(id: string): Promise<void> {
+  await sql`DELETE FROM rsvps WHERE id = ${id}`
+}
+
 export async function fetchRsvps(): Promise<Rsvp[]> {
   const rsvpRows = (await sql`
     SELECT id, created_at, name, email, attending, message, locale

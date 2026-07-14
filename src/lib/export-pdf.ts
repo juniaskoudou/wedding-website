@@ -1,6 +1,6 @@
 import { jsPDF } from "jspdf"
 import autoTable from "jspdf-autotable"
-import type { Guest, InvitationStatus, Spouse } from "./types"
+import type { Guest, InvitationStatus, Meal, Rsvp, Spouse } from "./types"
 
 const STATUS_LABELS: Record<InvitationStatus, string> = {
   en_attente: "En attente",
@@ -100,4 +100,77 @@ export function exportGuestListPdf(guests: Guest[]) {
   })
 
   doc.save(`invites-mariage-${date}.pdf`)
+}
+
+const MEAL_LABELS: Record<Meal, string> = {
+  fish: "Poisson",
+  chicken: "Poulet",
+  meat: "Viande",
+}
+
+function attendeesSummary(rsvp: Rsvp): string {
+  if (!rsvp.attending || rsvp.attendees.length === 0) return "—"
+  return rsvp.attendees
+    .map((a) => {
+      const meal = a.meal ? MEAL_LABELS[a.meal] : "—"
+      const diet = a.dietaryNotes ? ` (${a.dietaryNotes})` : ""
+      return `${a.name} : ${meal}${diet}`
+    })
+    .join("\n")
+}
+
+// rsvps is already ordered by the caller (most recent first)
+export function exportRsvpListPdf(rsvps: Rsvp[]) {
+  const doc = new jsPDF()
+
+  const total = rsvps.length
+  const attending = rsvps.filter((r) => r.attending)
+  const declined = total - attending.length
+  const people = attending.reduce((acc, r) => acc + r.attendees.length, 0)
+
+  doc.setFontSize(20)
+  doc.text("Réponses RSVP", 14, 20)
+
+  doc.setFontSize(10)
+  doc.setTextColor(100)
+  doc.text(
+    `${total} réponse${total > 1 ? "s" : ""} · ${attending.length} confirmée${attending.length > 1 ? "s" : ""} · ${declined} absent${declined > 1 ? "s" : ""}`,
+    14, 28,
+  )
+  doc.text(`${people} personne${people > 1 ? "s" : ""} attendue${people > 1 ? "s" : ""}`, 14, 34)
+  doc.setTextColor(0)
+
+  autoTable(doc, {
+    startY: 42,
+    head: [["#", "Nom", "Présence", "Pers.", "Détails (plats)", "Message"]],
+    body: rsvps.map((r, i) => [
+      i + 1,
+      r.email ? `${r.name}\n${r.email}` : r.name,
+      r.attending ? "Vient" : "Absent",
+      r.attending ? String(r.attendees.length) : "—",
+      attendeesSummary(r),
+      r.message ?? "",
+    ]),
+    styles: { fontSize: 8, cellPadding: 3, valign: "top" },
+    headStyles: {
+      fillColor: [30, 30, 30],
+      textColor: [255, 255, 255],
+      fontStyle: "bold",
+    },
+    alternateRowStyles: { fillColor: [245, 245, 245] },
+    columnStyles: {
+      0: { cellWidth: 10, halign: "center" },
+      1: { cellWidth: 38 },
+      2: { cellWidth: 18 },
+      3: { cellWidth: 12, halign: "center" },
+      4: { cellWidth: 55 },
+      5: { cellWidth: 49 },
+    },
+  })
+
+  const date = new Date().toLocaleDateString("fr-FR", {
+    day: "2-digit", month: "2-digit", year: "numeric",
+  })
+
+  doc.save(`rsvp-mariage-${date}.pdf`)
 }

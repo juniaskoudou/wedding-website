@@ -1,0 +1,62 @@
+.hero {
+  min-height: 100svh;
+  color: #263125;
+}
+
+.content {
+  box-sizing: border-box;
+  display: flex;
+  min-height: 100svh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.rose {
+  display: block;
+  width: 53px;
+  height: 63px;
+  flex: none;
+}
+
+.copy {
+  display: inline-flex;
+  flex-direction: column;
+  margin-top: 2.5rem;
+}
+
+.copy h1,
+.details {
+  font-family: "Perfectly Nineties", serif;
+  font-weight: 400;
+}
+
+.copy h1 {
+  margin: 0;
+  color: #263125;
+  font-size: 50px;
+  line-height: 0.95;
+  white-space: nowrap;
+}
+
+.initial {
+  font-style: italic;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  align-self: stretch;
+  margin-top: 4px;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.details p {
+  margin: 0;
+}
+

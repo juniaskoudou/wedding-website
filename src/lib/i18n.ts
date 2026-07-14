@@ -18,7 +18,7 @@ export interface Dictionary {
   }
   programme: {
     title: string
-    schedule: { time: string; label: string }[]
+    schedule: { label: string; description: string }[]
   }
   cta: {
     rsvp: string
@@ -66,12 +66,28 @@ const fr: Dictionary = {
     location: "Paris, France",
   },
   programme: {
-    title: "Programme",
+    title: "Ce qui vous attend",
     schedule: [
-      { time: "15h00", label: "Cérémonie civile" },
-      { time: "16h30", label: "Cérémonie religieuse" },
-      { time: "19h00", label: "Cocktail" },
-      { time: "20h30", label: "Dîner & soirée" },
+      {
+        label: "Cérémonie civile",
+        description:
+          "On se dit oui à la mairie de Champigny-sur-Marne (94), entourés de nos familles et de vous, nos proches.",
+      },
+      {
+        label: "Célébration nuptiale",
+        description:
+          "On échange nos vœux devant Dieu et devant vous, au lieu de réception, le moment que l'on attend le plus.",
+      },
+      {
+        label: "Vin d'honneur",
+        description:
+          "Le vin d'honneur pour trinquer tous ensemble, entre animations, musique et de belles surprises à venir.",
+      },
+      {
+        label: "Dîner & soirée",
+        description:
+          "Un généreux buffet ivoirien plein de saveurs, puis on danse toute la nuit. Ne soyez surtout pas timides !",
+      },
     ],
   },
   cta: {
@@ -120,12 +136,28 @@ const en: Dictionary = {
     location: "Paris, France",
   },
   programme: {
-    title: "Schedule",
+    title: "What to expect",
     schedule: [
-      { time: "3:00 PM", label: "Civil ceremony" },
-      { time: "4:30 PM", label: "Religious ceremony" },
-      { time: "7:00 PM", label: "Cocktail" },
-      { time: "8:30 PM", label: "Dinner & party" },
+      {
+        label: "Civil ceremony",
+        description:
+          "We say our I do's at the Champigny-sur-Marne city hall (94), with our families and all of you close by.",
+      },
+      {
+        label: "Religious ceremony",
+        description:
+          "We exchange our vows before God and before you, at the venue, the moment we look forward to the most.",
+      },
+      {
+        label: "Cocktail & animations",
+        description:
+          "The vin d'honneur, to raise a glass all together, with entertainment, music and a few surprises to come.",
+      },
+      {
+        label: "Dinner & party",
+        description:
+          "A generous Ivorian buffet full of flavor, then we dance all night. And whatever you do, don't be shy!",
+      },
     ],
   },
   cta: {

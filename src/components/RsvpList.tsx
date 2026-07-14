@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from "react"
 import { useRsvps } from "@/lib/use-rsvps"
-import type { Meal, Rsvp } from "@/lib/types"
+import type { Meal, Rsvp, RsvpSubmission } from "@/lib/types"
 import {
   Table,
   TableBody,
@@ -12,6 +12,17 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import RsvpEditDialog from "@/components/RsvpEditDialog"
+import { exportRsvpListPdf } from "@/lib/export-pdf"
+import {
   CheckCircle,
   XCircle,
   CaretDown,
@@ -19,6 +30,9 @@ import {
   Users,
   EnvelopeSimple,
   ChatCircle,
+  PencilSimple,
+  Trash,
+  FilePdf,
 } from "@phosphor-icons/react"
 
 const MEAL_LABELS: Record<Meal, string> = {
@@ -39,7 +53,15 @@ function StatCard({ label, value, sublabel }: { label: string; value: number; su
   )
 }
 
-function RsvpRow({ rsvp }: { rsvp: Rsvp }) {
+function RsvpRow({
+  rsvp,
+  onEdit,
+  onDelete,
+}: {
+  rsvp: Rsvp
+  onEdit: () => void
+  onDelete: () => void
+}) {
   const [open, setOpen] = useState(false)
   const peopleCount = rsvp.attendees.length
   const date = new Date(rsvp.createdAt).toLocaleDateString("fr-FR", {
@@ -81,12 +103,34 @@ function RsvpRow({ rsvp }: { rsvp: Rsvp }) {
           )}
         </TableCell>
         <TableCell className="text-xs text-muted-foreground">{date}</TableCell>
+        <TableCell>
+          <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={onEdit}
+              className="text-muted-foreground hover:text-foreground"
+              aria-label="Modifier"
+            >
+              <PencilSimple weight="bold" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              onClick={onDelete}
+              className="text-muted-foreground hover:text-destructive"
+              aria-label="Supprimer"
+            >
+              <Trash weight="bold" />
+            </Button>
+          </div>
+        </TableCell>
       </TableRow>
 
       {open && (
         <TableRow className="bg-muted/30 hover:bg-muted/30">
           <TableCell />
-          <TableCell colSpan={4} className="py-3">
+          <TableCell colSpan={5} className="py-3">
             <div className="flex flex-col gap-3 text-sm">
               {rsvp.attending && rsvp.attendees.length > 0 && (
                 <ul className="flex flex-col gap-1.5">
@@ -133,7 +177,9 @@ function RsvpRow({ rsvp }: { rsvp: Rsvp }) {
 }
 
 export default function RsvpList() {
-  const { rsvps, loading, error } = useRsvps()
+  const { rsvps, loading, error, removeRsvp, updateRsvp } = useRsvps()
+  const [editing, setEditing] = useState<Rsvp | null>(null)
+  const [deleting, setDeleting] = useState<Rsvp | null>(null)
 
   const stats = useMemo(() => {
     const total = rsvps.length
@@ -168,6 +214,18 @@ export default function RsvpList() {
         <StatCard label="Personnes attendues" value={stats.people} />
       </div>
 
+      <div className="flex justify-end">
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => exportRsvpListPdf(rsvps)}
+          disabled={rsvps.length === 0}
+        >
+          <FilePdf weight="bold" data-icon="inline-start" />
+          Exporter PDF
+        </Button>
+      </div>
+
       {rsvps.length === 0 ? (
         <div className="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-border py-16 text-center">
           <ChatCircle className="size-8 text-muted-foreground/50" />
@@ -182,15 +240,57 @@ export default function RsvpList() {
               <TableHead>Présence</TableHead>
               <TableHead>Personnes</TableHead>
               <TableHead>Reçu le</TableHead>
+              <TableHead className="w-20" />
             </TableRow>
           </TableHeader>
           <TableBody>
             {rsvps.map((r) => (
-              <RsvpRow key={r.id} rsvp={r} />
+              <RsvpRow
+                key={r.id}
+                rsvp={r}
+                onEdit={() => setEditing(r)}
+                onDelete={() => setDeleting(r)}
+              />
             ))}
           </TableBody>
         </Table>
       )}
+
+      {editing && (
+        <RsvpEditDialog
+          key={editing.id}
+          rsvp={editing}
+          open={true}
+          onOpenChange={(open) => { if (!open) setEditing(null) }}
+          onSubmit={(submission: RsvpSubmission) => updateRsvp(editing.id, submission)}
+        />
+      )}
+
+      <Dialog open={!!deleting} onOpenChange={(open) => { if (!open) setDeleting(null) }}>
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle>Supprimer la réponse</DialogTitle>
+            <DialogDescription>
+              Voulez-vous vraiment supprimer la réponse de {deleting?.name} ? Cette action est irréversible.
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setDeleting(null)}>
+              Annuler
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => {
+                if (deleting) removeRsvp(deleting.id)
+                setDeleting(null)
+              }}
+            >
+              <Trash weight="bold" data-icon="inline-start" />
+              Supprimer
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
