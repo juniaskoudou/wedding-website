@@ -4,33 +4,9 @@
   padding: 0 0 4rem;
 }
 
-.sticky {
-  overflow: hidden;
-}
-
 .viewport {
   overflow: hidden;
   width: 100%;
-}
-
-/* Mobile only: pin the carousel and let the centre photo expand on scroll. */
-@media (max-width: 767px) {
-  .section {
-    padding: 0;
-    /* Just enough travel to finish growing plus a short hold before release. */
-    height: 155svh;
-  }
-
-  .sticky {
-    position: sticky;
-    top: 0;
-    /* Full viewport so the growing photo is centred vertically: any leftover
-       space is split evenly top/bottom and reads as an intentional frame. */
-    height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 }
 
 .container {
@@ -40,17 +16,15 @@
 }
 
 .slide {
-  flex: 0 0 var(--slide-basis, 74%);
+  flex: 0 0 90%;
   min-width: 0;
-  padding: 0 var(--slide-pad, 4px);
+  padding: 0 4px;
   cursor: pointer;
 }
 
 .frame {
   position: relative;
   width: 100%;
-  /* Never let the growing photo touch the screen edges: keep 4px each side. */
-  max-width: calc(100svw - 8px);
   margin-inline: auto;
   aspect-ratio: 2 / 3;
   overflow: hidden;

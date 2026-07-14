@@ -226,23 +226,17 @@
   background-image: url("/grain.png");
   background-repeat: repeat;
   background-size: 200px 200px;
-  opacity: 0.1;
+  opacity: 0.08;
   mix-blend-mode: hard-light;
   will-change: transform;
-  animation: grain-shift 1.2s steps(6) infinite;
+  animation: grain-shift 3s steps(4) infinite;
 }
 
 @keyframes grain-shift {
   0%   { transform: translate(0, 0); }
-  10%  { transform: translate(-6%, -8%); }
-  20%  { transform: translate(-14%, 4%); }
-  30%  { transform: translate(8%, -18%); }
-  40%  { transform: translate(-6%, 16%); }
-  50%  { transform: translate(-14%, 8%); }
-  60%  { transform: translate(12%, 0); }
-  70%  { transform: translate(0, 12%); }
-  80%  { transform: translate(4%, 22%); }
-  90%  { transform: translate(-10%, 8%); }
+  25%  { transform: translate(-3%, -2%); }
+  50%  { transform: translate(2%, 3%); }
+  75%  { transform: translate(-2%, 2%); }
   100% { transform: translate(0, 0); }
 }
 

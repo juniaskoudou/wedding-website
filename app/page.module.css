@@ -61,10 +61,17 @@
 }
 
 /* Mobile: shorten the hero so the carousel peeks above the fold,
-   cueing that there's more to scroll. */
+   cueing that there's more to scroll. Uses lvh (the tallest viewport, i.e.
+   with the address bar hidden) so the peek survives the mobile URL bar. */
 @media (max-width: 767px) {
+  .hero {
+    min-height: auto;
+  }
+
   .content {
-    min-height: 85svh;
+    min-height: 78lvh;
+    /* Bias the vertically-centred block a little above centre. */
+    padding-bottom: 12svh;
   }
 }
 
