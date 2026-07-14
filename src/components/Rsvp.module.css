@@ -40,10 +40,7 @@
 .main {
   width: 100%;
   box-sizing: border-box;
-  /* Bias the block toward the illustration: free space collects above it while
-     a small gap keeps it off the artwork. */
-  margin-top: auto;
-  margin-bottom: 48px;
+  margin-block: auto;
 }
 
 /* Names + venue/date grouped so the row stretches to exactly the names' width
