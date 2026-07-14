@@ -1,20 +1,35 @@
 .section {
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  /* Scroll up and cover the pinned section above (which reserves one extra
+     viewport of scroll for exactly this overlap). Full-viewport height so it
+     fully covers the pinned frame as it rises. */
+  margin-top: -100svh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  padding-top: 64px;
   overflow: hidden;
+  background: linear-gradient(180deg, rgba(246, 226, 217, 0) 0%, #f6e2d9 100%);
+}
+
+/* Text + button, centered in the space above the pinned illustration. */
+.intro {
+  margin-block: auto;
 }
 
 .text {
   margin: 0 auto;
-  max-width: 320px;
+  max-width: 420px;
   padding-inline: 24px;
   font-family: var(--font-display);
   font-weight: 400;
-  font-size: 22px;
+  font-size: 24px;
   line-height: 1.25;
   letter-spacing: -0.2px;
   text-align: center;
+  text-wrap: balance;
   color: var(--color-ink);
 }
 
@@ -22,7 +37,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 28px 24px 0;
+  margin: 40px 32px 0;
   height: 56px;
   border-radius: 999px;
   background: var(--color-ink);
@@ -39,24 +54,12 @@
   opacity: 0.92;
 }
 
-/* Venue line-art, fading in from the background at the top. */
+/* Venue line-art. The PNG has a transparent background, so it sits directly on
+   the footer gradient with no overlay needed. */
 .venue {
   position: relative;
-  margin-top: 40px;
+  margin-top: 0;
   width: 100%;
-}
-
-.venue::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 45%;
-  z-index: 1;
-  background: linear-gradient(
-    to bottom,
-    var(--bg-base) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
 }
 
 .venueImg {

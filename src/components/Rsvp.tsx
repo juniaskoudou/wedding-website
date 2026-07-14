@@ -16,18 +16,20 @@ export default function Rsvp({
 }) {
   return (
     <section className={styles.section} aria-label="RSVP">
-      <p className={styles.text}>{text}</p>
+      <div className={styles.intro}>
+        <p className={styles.text}>{text}</p>
 
-      <a className={styles.button} href={buttonHref}>
-        {buttonLabel}
-      </a>
+        <a className={styles.button} href={buttonHref}>
+          {buttonLabel}
+        </a>
+      </div>
 
       <div className={styles.venue}>
         <Image
           src={venueImage}
           alt={venueAlt}
-          width={890}
-          height={420}
+          width={1741}
+          height={700}
           className={styles.venueImg}
           unoptimized
           priority={false}

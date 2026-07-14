@@ -13,5 +13,5 @@ export const expectVisuals: { icon: string }[] = [
 export const closingAssets = {
   buttonHref: "/rsvp",
   // Drop the venue line-art here once available (SVG/PNG in /public).
-  venueImage: "/venue.svg",
+  venueImage: "/venue.png",
 }

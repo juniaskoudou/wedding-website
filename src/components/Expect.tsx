@@ -28,11 +28,16 @@ export default function Expect({
   // Max horizontal pan distance (px). Kept in a ref because the scroll handler
   // needs the freshest value without re-subscribing.
   const maxTranslate = useRef(0)
+  // Overlap distance (px) = the extra viewport during which the footer rises.
+  const overlapDist = useRef(0)
 
   const [sectionHeight, setSectionHeight] = useState<number | null>(null)
   const [progress, setProgress] = useState(0)
   const [translate, setTranslate] = useState(0)
   const [active, setActive] = useState(0)
+  // 0 while panning, ramps 0→1 during the overlap so the frame fades as the
+  // footer covers it.
+  const [fade, setFade] = useState(0)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -48,19 +53,28 @@ export default function Expect({
       const padRight = parseFloat(getComputedStyle(row).paddingRight) || 0
       const max = Math.max(0, row.scrollWidth + padRight - viewport.clientWidth)
       maxTranslate.current = max
-      // The extra vertical scroll room = horizontal distance to pan through.
-      setSectionHeight(sticky.offsetHeight + max)
+      overlapDist.current = sticky.offsetHeight
+      // Section height = pinned viewport + horizontal pan distance + one extra
+      // viewport. During that last viewport the cards are done (progress stays
+      // at 1) and the last frame stays pinned while the footer scrolls up over
+      // it (see the negative margin-top on the footer).
+      setSectionHeight(sticky.offsetHeight * 2 + max)
     }
 
     let ticking = false
     const update = () => {
       ticking = false
       const max = maxTranslate.current
+      const overlap = overlapDist.current
       const rect = section.getBoundingClientRect()
-      const p = max > 0 ? clamp(-rect.top / max, 0, 1) : 0
+      const scrolled = -rect.top
+      const p = max > 0 ? clamp(scrolled / max, 0, 1) : 0
       setProgress(p)
       setTranslate(-p * max)
       setActive(Math.round(p * (cards.length - 1)))
+      // Fade the frame fully out by ~35% of the overlap, so it hits 0 opacity
+      // while the footer is still rising.
+      setFade(overlap > 0 ? clamp((scrolled - max) / (overlap * 0.35), 0, 1) : 0)
     }
     const onScroll = () => {
       if (ticking) return
@@ -94,7 +108,11 @@ export default function Expect({
       style={sectionHeight ? { height: sectionHeight } : undefined}
       aria-label="What to expect"
     >
-      <div ref={stickyRef} className={styles.sticky}>
+      <div
+        ref={stickyRef}
+        className={styles.sticky}
+        style={{ opacity: 1 - fade }}
+      >
         <h2 className={styles.heading}>
           {heading.before}
           <em className={styles.highlight}>{heading.highlight}</em>
