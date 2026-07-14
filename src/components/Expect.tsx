@@ -53,12 +53,19 @@ export default function Expect({
       const padRight = parseFloat(getComputedStyle(row).paddingRight) || 0
       const max = Math.max(0, row.scrollWidth + padRight - viewport.clientWidth)
       maxTranslate.current = max
-      overlapDist.current = sticky.offsetHeight
+      const pinned = sticky.offsetHeight
+      overlapDist.current = pinned
+      // The footer overlaps the pinned frame by pulling itself up. It must pull
+      // by *exactly* the extra viewport we reserve below, otherwise the reserved
+      // scroll and the footer's travel diverge (this is the mobile bug where the
+      // reserved px height != CSS 100svh, leaving dead scroll past the footer).
+      // Publish the measured pin height so the footer pulls by the same px value.
+      document.documentElement.style.setProperty("--expect-overlap", `${pinned}px`)
       // Section height = pinned viewport + horizontal pan distance + one extra
       // viewport. During that last viewport the cards are done (progress stays
       // at 1) and the last frame stays pinned while the footer scrolls up over
       // it (see the negative margin-top on the footer).
-      setSectionHeight(sticky.offsetHeight * 2 + max)
+      setSectionHeight(pinned * 2 + max)
     }
 
     let ticking = false

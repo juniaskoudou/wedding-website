@@ -3,41 +3,97 @@
   position: relative;
   z-index: 1;
   /* Scroll up and cover the pinned section above (which reserves one extra
-     viewport of scroll for exactly this overlap). Full-viewport height so it
-     fully covers the pinned frame as it rises. */
-  margin-top: -100svh;
-  min-height: 100svh;
+     viewport of scroll for exactly this overlap). The pull-up MUST match the
+     reserved scroll exactly, so use the pin height the Expect section measures
+     and publishes (--expect-overlap, in px). Falls back to 100svh before JS
+     runs. min-height keeps the footer filling the viewport visually. */
+  margin-top: calc(-1 * var(--expect-overlap, 100svh));
+  min-height: max(var(--expect-overlap, 100svh), 100svh);
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow: hidden;
   background: linear-gradient(180deg, rgba(246, 226, 217, 0) 0%, #f6e2d9 100%);
-}
-
-/* Text + button, centered in the space above the pinned illustration. */
-.intro {
-  margin-block: auto;
-}
-
-.text {
-  margin: 0 auto;
-  max-width: 420px;
-  padding-inline: 24px;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1.25;
-  letter-spacing: -0.2px;
-  text-align: center;
-  text-wrap: balance;
   color: var(--color-ink);
 }
 
+/* Highlighted intro line near the top. */
+.intro {
+  margin: 0;
+  padding: 104px 24px 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.2px;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.highlight {
+  color: var(--color-terracotta);
+  font-style: italic;
+}
+
+/* Names + venue/date + button, centered in the space between the intro and the
+   pinned illustration. */
+.main {
+  width: 100%;
+  box-sizing: border-box;
+  /* Bias the block toward the illustration: free space collects above it while
+     a small gap keeps it off the artwork. */
+  margin-top: auto;
+  margin-bottom: 48px;
+}
+
+/* Names + venue/date grouped so the row stretches to exactly the names' width
+   and its edges line up with them — same trick as the hero (.copy/.details). */
+.headline {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.names {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 0.95;
+  letter-spacing: -0.5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.initial {
+  font-style: italic;
+}
+
+.details {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.details p {
+  margin: 0;
+}
+
 .button {
+  align-self: stretch;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 40px 32px 0;
+  margin: 32px 0 0;
   height: 56px;
   border-radius: 999px;
   background: var(--color-ink);
@@ -58,7 +114,7 @@
    the footer gradient with no overlay needed. */
 .venue {
   position: relative;
-  margin-top: 0;
+  margin-top: 32px;
   width: 100%;
 }
 

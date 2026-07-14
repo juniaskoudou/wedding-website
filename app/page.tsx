@@ -54,7 +54,9 @@ export default async function PublicPage() {
       <Milestones milestones={milestones} intro={landing.story.intro} />
       <Expect heading={landing.expect.heading} cards={expectCards} />
       <Rsvp
-        text={landing.closing.text}
+        intro={landing.closing.intro}
+        venue={landing.hero.venue}
+        date={landing.hero.date}
         buttonLabel={landing.closing.buttonLabel}
         buttonHref={closingAssets.buttonHref}
         venueImage={closingAssets.venueImage}

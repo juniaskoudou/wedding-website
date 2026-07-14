@@ -31,7 +31,7 @@ export interface Dictionary {
       cards: { title: string; body: string }[]
     }
     closing: {
-      text: string
+      intro: { before: string; highlight: string }
       buttonLabel: string
       venueAlt: string
     }
@@ -117,8 +117,11 @@ const fr: Dictionary = {
       ],
     },
     closing: {
-      text: "On se marie, et on serait tellement heureux de vous compter parmi nous.",
-      buttonLabel: "RÉPONDRE ICI",
+      intro: {
+        before: "On se marie, et",
+        highlight: "vous êtes invités à célébrer avec nous !",
+      },
+      buttonLabel: "CONFIRMER VOTRE PRÉSENCE",
       venueAlt: "Illustration du lieu de réception",
     },
   },
@@ -203,8 +206,11 @@ const en: Dictionary = {
       ],
     },
     closing: {
-      text: "We're getting married, and we would be so happy to celebrate with you.",
-      buttonLabel: "RSVP HERE",
+      intro: {
+        before: "We're getting married, and",
+        highlight: "you're invited to celebrate us!",
+      },
+      buttonLabel: "CONFIRM YOUR ATTENDANCE",
       venueAlt: "Illustration of the wedding venue",
     },
   },

@@ -18,16 +18,17 @@ export default function LocaleSwitcher({ current }: { current: Locale }) {
   }
 
   return (
-    <div className="inline-flex items-center gap-2 text-xs">
+    <div className="-my-2 inline-flex items-center text-xs">
       {ORDER.map((loc) => (
         <button
           key={loc}
           type="button"
           onClick={() => setLocale(loc)}
           className={
-            loc === current
+            "px-2 py-2 " +
+            (loc === current
               ? "font-medium text-ink"
-              : "text-ink/50 transition-colors hover:text-ink"
+              : "text-ink/50 transition-colors hover:text-ink")
           }
           aria-current={loc === current}
         >
