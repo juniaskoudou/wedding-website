@@ -38,13 +38,15 @@ export default function Carousel() {
       raf = 0
       const vh = window.innerHeight
       const rect = section.getBoundingClientRect()
-      // Section is taller than the viewport and its inner content is sticky.
-      // Progress tracks how far we've scrolled through that extra height.
-      const scrollable = rect.height - vh
+      // Absolute document offset of the section top (constant across scroll).
+      const docTop = rect.top + window.scrollY
+      const scrolled = docTop - rect.top // distance scrolled from the top
+      // Growth begins on the very first scroll and keeps going until a little
+      // after the carousel has risen into view and pinned — so the expansion
+      // is actually visible on screen rather than finishing off-screen.
+      const growthEnd = docTop + vh * 0.5
       const progress =
-        scrollable > 0
-          ? Math.min(1, Math.max(0, -rect.top / scrollable))
-          : 0
+        growthEnd > 0 ? Math.min(1, Math.max(0, scrolled / growthEnd)) : 0
       if (Math.abs(progress - lastProgress) < 0.001) return
       lastProgress = progress
 

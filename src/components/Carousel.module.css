@@ -17,16 +17,19 @@
 @media (max-width: 767px) {
   .section {
     padding: 0;
-    /* Extra height beyond the viewport = the scroll distance over which the
-       centre photo expands edge-to-edge while the content stays pinned. */
-    height: 150svh;
+    /* Just enough travel to finish growing plus a short hold before release. */
+    height: 155svh;
   }
 
   .sticky {
     position: sticky;
     top: 0;
-    /* Content-height, not the full viewport, with a little breathing room. */
-    padding-top: 8svh;
+    /* Full viewport so the growing photo is centred vertically: any leftover
+       space is split evenly top/bottom and reads as an intentional frame. */
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 
@@ -46,6 +49,9 @@
 .frame {
   position: relative;
   width: 100%;
+  /* Never let the growing photo touch the screen edges: keep 4px each side. */
+  max-width: calc(100svw - 8px);
+  margin-inline: auto;
   aspect-ratio: 2 / 3;
   overflow: hidden;
 }

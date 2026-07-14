@@ -1,0 +1,106 @@
+.section {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 72px 0 8px;
+}
+
+.heading {
+  margin: 0 24px 40px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.2px;
+  text-align: center;
+  color: var(--color-ink);
+}
+
+.highlight {
+  color: var(--color-terracotta);
+  font-style: italic;
+}
+
+/* Horizontal scroller ------------------------------------------------------*/
+.viewport {
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding-inline: 24px;
+}
+
+.card {
+  flex: 0 0 82%;
+  min-width: 0;
+  transition: opacity 0.35s ease;
+  opacity: 0.4;
+}
+
+.card.active {
+  opacity: 1;
+}
+
+.cardTitle {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: -0.15px;
+  color: var(--color-ink);
+  transition: color 0.35s ease;
+}
+
+.card.active .cardTitle {
+  color: var(--color-terracotta);
+}
+
+.cardBody {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: -0.14px;
+  color: var(--color-ink);
+}
+
+/* Progress line ------------------------------------------------------------*/
+.track {
+  position: relative;
+  height: 9px;
+  margin: 28px 24px 0;
+}
+
+.track::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 126, 70, 0.25);
+}
+
+.fill {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: var(--color-terracotta);
+}
+
+.dot {
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 9px;
+  margin-top: -4.5px;
+  border-radius: 50%;
+  background: var(--color-terracotta);
+}

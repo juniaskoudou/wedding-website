@@ -24,7 +24,7 @@
 .copy {
   display: inline-flex;
   flex-direction: column;
-  margin-top: 2.5rem;
+  margin-top: 6rem;
 }
 
 .copy h1,
@@ -58,5 +58,13 @@
 
 .details p {
   margin: 0;
+}
+
+/* Mobile: shorten the hero so the carousel peeks above the fold,
+   cueing that there's more to scroll. */
+@media (max-width: 767px) {
+  .content {
+    min-height: 85svh;
+  }
 }
 
