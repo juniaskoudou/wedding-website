@@ -18,19 +18,22 @@ function resolveSiteUrl(): string {
 
 export const siteUrl = resolveSiteUrl()
 
+/** Site / brand name used for the Open Graph siteName and title template. */
+export const siteName = "Caroline & Junias"
+
 /** Localized site copy used across metadata (Open Graph, Twitter, etc.). */
 export const siteMeta: Record<Locale, { title: string; description: string; ogAlt: string }> = {
   fr: {
-    title: "Caroline & Junias — Notre mariage",
+    title: "Caroline & Junias vous invitent à leur mariage",
     description:
       "Caroline & Junias se marient le 15 Avril 2027 au Manoir de Villefermoy. Découvrez notre histoire et confirmez votre présence.",
-    ogAlt: "Caroline & Junias — 15 Avril 2027, Manoir de Villefermoy",
+    ogAlt: "Caroline & Junias vous invitent à leur mariage — 15 Avril 2027, Manoir de Villefermoy",
   },
   en: {
-    title: "Caroline & Junias — Our wedding",
+    title: "Caroline & Junias invite you to their wedding",
     description:
       "Caroline & Junias are getting married on April 15, 2027 at Manoir de Villefermoy. Discover our story and RSVP.",
-    ogAlt: "Caroline & Junias — April 15, 2027, Manoir de Villefermoy",
+    ogAlt: "Caroline & Junias invite you to their wedding — April 15, 2027, Manoir de Villefermoy",
   },
 }
 

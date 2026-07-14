@@ -8,6 +8,7 @@ import SmoothScroll from "@/components/SmoothScroll"
 import { getLocale } from "@/lib/locale"
 import {
   siteUrl,
+  siteName,
   siteMeta,
   ogImagePath,
   ogImageWidth,
@@ -23,18 +24,18 @@ export async function generateMetadata(): Promise<Metadata> {
     metadataBase: new URL(siteUrl),
     title: {
       default: meta.title,
-      template: "%s · Caroline & Junias",
+      template: `%s · ${siteName}`,
     },
     description: meta.description,
-    applicationName: "Caroline & Junias",
+    applicationName: siteName,
     keywords: [
       "mariage",
       "wedding",
-      "Caroline & Junias",
+      siteName,
       "RSVP",
       "Manoir de Villefermoy",
     ],
-    authors: [{ name: "Caroline & Junias" }],
+    authors: [{ name: siteName }],
     alternates: {
       canonical: "/",
     },
@@ -42,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       type: "website",
       locale: ogLocale,
       url: siteUrl,
-      siteName: "Caroline & Junias",
+      siteName,
       title: meta.title,
       description: meta.description,
       images: [
