@@ -2,10 +2,23 @@
 
 import { useEffect, useRef, useState } from "react"
 import Polaroid from "./Polaroid"
-import { milestones, milestonesIntro } from "@/data/milestones"
+import type { Milestone } from "@/data/milestones"
 import styles from "./Milestones.module.css"
 
-export default function Milestones() {
+type Intro = {
+  before: string
+  highlight: string
+  afterLine1: string
+  line2: string
+}
+
+export default function Milestones({
+  milestones,
+  intro,
+}: {
+  milestones: Milestone[]
+  intro: Intro
+}) {
   const [active, setActive] = useState(0)
   const itemRefs = useRef<Array<HTMLLIElement | null>>([])
 
@@ -46,11 +59,11 @@ export default function Milestones() {
   return (
     <section className={styles.section} aria-label="Our story">
       <p className={styles.intro}>
-        {milestonesIntro.before}
-        <em className={styles.highlight}>{milestonesIntro.highlight}</em>
-        {milestonesIntro.afterLine1}
+        {intro.before}
+        <em className={styles.highlight}>{intro.highlight}</em>
+        {intro.afterLine1}
         <br />
-        {milestonesIntro.line2}
+        {intro.line2}
       </p>
 
       <div className={styles.body}>

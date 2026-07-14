@@ -11,20 +11,30 @@ export function resolveLocale(input: string | null | undefined): Locale {
 }
 
 export interface Dictionary {
-  hero: {
-    invitedTo: string
-    date: string
-    location: string
-  }
-  programme: {
-    title: string
-    schedule: { label: string; description: string }[]
-  }
-  cta: {
-    rsvp: string
-  }
-  footer: {
-    tagline: string
+  landing: {
+    hero: {
+      venue: string
+      date: string
+    }
+    story: {
+      intro: {
+        before: string
+        highlight: string
+        afterLine1: string
+        line2: string
+      }
+      milestones: { title: string; date: string; location: string }[]
+    }
+    photos: { alt: string; date: string; location: string }[]
+    expect: {
+      heading: { before: string; highlight: string; after: string }
+      cards: { title: string; body: string }[]
+    }
+    closing: {
+      text: string
+      buttonLabel: string
+      venueAlt: string
+    }
   }
   rsvp: {
     title: string
@@ -60,41 +70,57 @@ export interface Dictionary {
 }
 
 const fr: Dictionary = {
-  hero: {
-    invitedTo: "Vous êtes invités au mariage de",
-    date: "Samedi 14 février 2026",
-    location: "Paris, France",
-  },
-  programme: {
-    title: "Ce qui vous attend",
-    schedule: [
-      {
-        label: "Cérémonie civile",
-        description:
-          "On se dit oui à la mairie de Champigny-sur-Marne (94), entourés de nos familles et de vous, nos proches.",
+  landing: {
+    hero: {
+      venue: "Manoir de Villefermoy",
+      date: "15 Avril 2027",
+    },
+    story: {
+      intro: {
+        before: "Le ",
+        highlight: "Quinze",
+        afterLine1: " revient sans cesse",
+        line2: "comme s'il nous appartenait.",
       },
-      {
-        label: "Célébration nuptiale",
-        description:
-          "On échange nos vœux devant Dieu et devant vous, au lieu de réception, le moment que l'on attend le plus.",
-      },
-      {
-        label: "Vin d'honneur",
-        description:
-          "Le vin d'honneur pour trinquer tous ensemble, entre animations, musique et de belles surprises à venir.",
-      },
-      {
-        label: "Dîner & soirée",
-        description:
-          "Un généreux buffet ivoirien plein de saveurs, puis on danse toute la nuit. Ne soyez surtout pas timides !",
-      },
+      milestones: [
+        { title: "La Demande", date: "15 Mars 2025", location: "Cascais, Portugal" },
+        { title: "La Dote", date: "15 Juin 2025", location: "Bruxelles, Belgique" },
+        { title: "Le Mariage", date: "15 Avril 2027", location: "Les Écrennes, France" },
+      ],
+    },
+    photos: [
+      { alt: "Caroline & Junias, complices et rieurs", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias au bord du lac", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias en pique-nique", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias assis tout près", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias sur le ponton", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
     ],
-  },
-  cta: {
-    rsvp: "Confirmer ma présence",
-  },
-  footer: {
-    tagline: "Junias & Caroline · 2026",
+    expect: {
+      heading: { before: "Ce qui vous ", highlight: "attend", after: " le 15 Avril" },
+      cards: [
+        {
+          title: "Cérémonie civile",
+          body: "On se dit oui à la mairie de Champigny-sur-Marne (94), entourés de nos familles et de vous, nos proches.",
+        },
+        {
+          title: "Célébration nuptiale",
+          body: "On échange nos vœux devant Dieu et devant vous, au lieu de réception, le moment que l'on attend le plus.",
+        },
+        {
+          title: "Vin d'honneur",
+          body: "Le vin d'honneur pour trinquer tous ensemble, entre animations, musique et de belles surprises à venir.",
+        },
+        {
+          title: "Dîner & soirée",
+          body: "Un généreux buffet ivoirien plein de saveurs, puis on danse toute la nuit. Ne soyez surtout pas timides !",
+        },
+      ],
+    },
+    closing: {
+      text: "On se marie, et on serait tellement heureux de vous compter parmi nous.",
+      buttonLabel: "RÉPONDRE ICI",
+      venueAlt: "Illustration du lieu de réception",
+    },
   },
   rsvp: {
     title: "Confirmez votre présence",
@@ -130,41 +156,57 @@ const fr: Dictionary = {
 }
 
 const en: Dictionary = {
-  hero: {
-    invitedTo: "You are invited to the wedding of",
-    date: "Saturday, February 14, 2026",
-    location: "Paris, France",
-  },
-  programme: {
-    title: "What to expect",
-    schedule: [
-      {
-        label: "Civil ceremony",
-        description:
-          "We say our I do's at the Champigny-sur-Marne city hall (94), with our families and all of you close by.",
+  landing: {
+    hero: {
+      venue: "Manoir de Villefermoy",
+      date: "April 15, 2027",
+    },
+    story: {
+      intro: {
+        before: "The ",
+        highlight: "Fifteenth",
+        afterLine1: " keeps showing up",
+        line2: "as if it belongs to us.",
       },
-      {
-        label: "Religious ceremony",
-        description:
-          "We exchange our vows before God and before you, at the venue, the moment we look forward to the most.",
-      },
-      {
-        label: "Cocktail & animations",
-        description:
-          "The vin d'honneur, to raise a glass all together, with entertainment, music and a few surprises to come.",
-      },
-      {
-        label: "Dinner & party",
-        description:
-          "A generous Ivorian buffet full of flavor, then we dance all night. And whatever you do, don't be shy!",
-      },
+      milestones: [
+        { title: "The Proposal", date: "March 15, 2025", location: "Cascais, Portugal" },
+        { title: "The Dowry", date: "June 15, 2025", location: "Bruxelles, Belgium" },
+        { title: "The Wedding", date: "April 15, 2027", location: "Les Écrennes, France" },
+      ],
+    },
+    photos: [
+      { alt: "Caroline & Junias laughing together", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias by the lake", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias on a picnic", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias sitting close", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias walking on the dock", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
     ],
-  },
-  cta: {
-    rsvp: "RSVP",
-  },
-  footer: {
-    tagline: "Junias & Caroline · 2026",
+    expect: {
+      heading: { before: "What to ", highlight: "expect", after: " on April 15th" },
+      cards: [
+        {
+          title: "Civil ceremony",
+          body: "We say our I do's at the Champigny-sur-Marne city hall (94), with our families and all of you close by.",
+        },
+        {
+          title: "Religious ceremony",
+          body: "We exchange our vows before God and before you, at the venue, the moment we look forward to the most.",
+        },
+        {
+          title: "Cocktail & animations",
+          body: "The vin d'honneur, to raise a glass all together, with entertainment, music and a few surprises to come.",
+        },
+        {
+          title: "Dinner & party",
+          body: "A generous Ivorian buffet full of flavor, then we dance all night. And whatever you do, don't be shy!",
+        },
+      ],
+    },
+    closing: {
+      text: "We're getting married, and we would be so happy to celebrate with you.",
+      buttonLabel: "RSVP HERE",
+      venueAlt: "Illustration of the wedding venue",
+    },
   },
   rsvp: {
     title: "RSVP",

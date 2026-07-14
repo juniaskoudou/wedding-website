@@ -1,20 +1,31 @@
 import Image from "next/image"
-import { closing } from "@/data/expect"
 import styles from "./Rsvp.module.css"
 
-export default function Rsvp() {
+export default function Rsvp({
+  text,
+  buttonLabel,
+  buttonHref,
+  venueImage,
+  venueAlt,
+}: {
+  text: string
+  buttonLabel: string
+  buttonHref: string
+  venueImage: string
+  venueAlt: string
+}) {
   return (
     <section className={styles.section} aria-label="RSVP">
-      <p className={styles.text}>{closing.text}</p>
+      <p className={styles.text}>{text}</p>
 
-      <a className={styles.button} href={closing.buttonHref}>
-        {closing.buttonLabel}
+      <a className={styles.button} href={buttonHref}>
+        {buttonLabel}
       </a>
 
       <div className={styles.venue}>
         <Image
-          src={closing.venueImage}
-          alt={closing.venueAlt}
+          src={venueImage}
+          alt={venueAlt}
           width={890}
           height={420}
           className={styles.venueImg}

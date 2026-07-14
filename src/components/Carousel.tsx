@@ -2,24 +2,22 @@
 
 import Image from "next/image"
 import useEmblaCarousel from "embla-carousel-react"
-import { carouselPhotos } from "@/data/photos"
+import type { Photo } from "@/data/photos"
 import styles from "./Carousel.module.css"
 
-const START_INDEX = Math.floor(carouselPhotos.length / 2)
-
-export default function Carousel() {
+export default function Carousel({ photos }: { photos: Photo[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
     containScroll: false,
-    startIndex: START_INDEX,
+    startIndex: Math.floor(photos.length / 2),
   })
 
   return (
     <section className={styles.section} aria-label="Photo gallery">
       <div className={styles.viewport} ref={emblaRef}>
         <div className={styles.container}>
-          {carouselPhotos.map((photo, i) => (
+          {photos.map((photo, i) => (
             <div
               key={photo.src}
               className={styles.slide}

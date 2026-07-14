@@ -1,11 +1,23 @@
 .section {
   box-sizing: border-box;
   width: 100%;
-  padding: 64px 0;
   background: #fff;
+  position: relative;
+}
+
+/* The inner block pins to the viewport while the section scrolls, turning
+   vertical page scroll into horizontal card travel. */
+.sticky {
+  position: sticky;
+  top: 0;
+  box-sizing: border-box;
+  min-height: 100svh;
+  padding: 72px 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 64px;
+  overflow: hidden;
 }
 
 .heading {
@@ -38,6 +50,7 @@
   align-items: flex-start;
   gap: 20px;
   padding-inline: 24px;
+  will-change: transform;
 }
 
 .card {

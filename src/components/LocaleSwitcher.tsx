@@ -18,23 +18,21 @@ export default function LocaleSwitcher({ current }: { current: Locale }) {
   }
 
   return (
-    <div className="inline-flex items-center gap-1 text-xs">
-      {ORDER.map((loc, i) => (
-        <span key={loc} className="inline-flex items-center gap-1">
-          {i > 0 && <span className="text-muted-foreground/40">/</span>}
-          <button
-            type="button"
-            onClick={() => setLocale(loc)}
-            className={
-              loc === current
-                ? "font-medium text-foreground"
-                : "text-muted-foreground transition-colors hover:text-foreground"
-            }
-            aria-current={loc === current}
-          >
-            {LABELS[loc]}
-          </button>
-        </span>
+    <div className="inline-flex items-center gap-2 text-xs">
+      {ORDER.map((loc) => (
+        <button
+          key={loc}
+          type="button"
+          onClick={() => setLocale(loc)}
+          className={
+            loc === current
+              ? "font-medium text-foreground"
+              : "text-muted-foreground transition-colors hover:text-foreground"
+          }
+          aria-current={loc === current}
+        >
+          {LABELS[loc]}
+        </button>
       ))}
     </div>
   )
