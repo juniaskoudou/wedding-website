@@ -13,9 +13,11 @@ export type Photo = {
 }
 
 export const photoSources: { src: string }[] = [
-  { src: "/photos/photo-01.png" },
-  { src: "/photos/photo-03.png" },
-  { src: "/photos/photo-02.png" },
-  { src: "/photos/photo-04.png" },
-  { src: "/photos/photo-05.png" },
+  { src: "/photos/photo-01.jpg" },
+  { src: "/photos/photo-02.jpg" },
+  { src: "/photos/photo-03.jpg" },
+  { src: "/photos/photo-04.jpg" },
+  { src: "/photos/photo-05.jpg" },
+  { src: "/photos/photo-06.jpg" },
+  { src: "/photos/photo-07.jpg" },
 ]

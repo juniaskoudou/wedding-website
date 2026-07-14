@@ -20,6 +20,15 @@
   background: #e9e4de;
 }
 
+/* Each milestone image/colour is stacked; only the active layer is opaque so
+   swapping milestones cross-fades instead of cutting. */
+.layer {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.28s ease;
+  will-change: opacity;
+}
+
 .fill {
   position: absolute;
   inset: 0;

@@ -54,8 +54,6 @@ export default function Milestones({
     return () => observer.disconnect()
   }, [])
 
-  const current = milestones[active]
-
   return (
     <section className={styles.section} aria-label="Our story">
       <p className={styles.intro}>
@@ -88,11 +86,7 @@ export default function Milestones({
         </ol>
 
         <div className={styles.polaroidCol}>
-          <Polaroid
-            color={current.color}
-            image={current.image}
-            imageAlt={current.imageAlt}
-          />
+          <Polaroid layers={milestones} activeIndex={active} />
         </div>
       </div>
     </section>

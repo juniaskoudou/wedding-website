@@ -94,6 +94,8 @@ const fr: Dictionary = {
       { alt: "Caroline & Junias en pique-nique", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
       { alt: "Caroline & Junias assis tout près", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
       { alt: "Caroline & Junias sur le ponton", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias, regards complices", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias, main dans la main", date: "15 Juin 2026", location: "Enghien-les-Bains, France" },
     ],
     expect: {
       heading: { before: "Ce qui vous ", highlight: "attend", after: " le 15 Avril" },
@@ -183,6 +185,8 @@ const en: Dictionary = {
       { alt: "Caroline & Junias on a picnic", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
       { alt: "Caroline & Junias sitting close", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
       { alt: "Caroline & Junias walking on the dock", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias, knowing glances", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
+      { alt: "Caroline & Junias, hand in hand", date: "June 15, 2026", location: "Enghien-les-Bains, France" },
     ],
     expect: {
       heading: { before: "What to ", highlight: "expect", after: " on April 15th" },

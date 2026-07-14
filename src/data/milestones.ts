@@ -17,7 +17,19 @@ export type Milestone = {
 } & MilestoneVisual
 
 export const milestoneVisuals: MilestoneVisual[] = [
-  { color: "#C9B8A8" },
-  { color: "#B7A6A0" },
-  { color: "#A9B0A2" },
+  {
+    color: "#C9B8A8",
+    image: "/polaroid/proposal-beach.jpg",
+    imageAlt: "Caroline & Junias — the proposal",
+  },
+  {
+    color: "#B7A6A0",
+    image: "/polaroid/dote-selfie.jpg",
+    imageAlt: "Caroline & Junias — the dowry",
+  },
+  {
+    color: "#A9B0A2",
+    image: "/polaroid/wedding-blur.jpg",
+    imageAlt: "Caroline & Junias — the wedding",
+  },
 ]
