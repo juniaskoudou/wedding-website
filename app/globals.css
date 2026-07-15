@@ -73,84 +73,89 @@
     --bg-tint: 246 226 217;
     --bg-tint-opacity: 0.2;
 
+    /* Brand palette (Figma) — shared by landing + admin/shadcn */
+    --brand-ink: #263125;
+    --brand-terracotta: #ff7e46;
+    --brand-peach: #f6e2d9;
+
     /* Motion — one strong ease-out curve shared across entrance animations. */
     --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.147 0.004 49.3);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.147 0.004 49.3);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.147 0.004 49.3);
-    --primary: oklch(0.214 0.009 43.1);
-    --primary-foreground: oklch(0.986 0.002 67.8);
-    --secondary: oklch(0.96 0.002 17.2);
-    --secondary-foreground: oklch(0.214 0.009 43.1);
-    --muted: oklch(0.96 0.002 17.2);
-    --muted-foreground: oklch(0.547 0.021 43.1);
-    --accent: oklch(0.96 0.002 17.2);
-    --accent-foreground: oklch(0.214 0.009 43.1);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0.005 34.3);
-    --input: oklch(0.922 0.005 34.3);
-    --ring: oklch(0.714 0.014 41.2);
-    --chart-1: oklch(0.868 0.007 39.5);
-    --chart-2: oklch(0.547 0.021 43.1);
-    --chart-3: oklch(0.438 0.017 39.3);
-    --chart-4: oklch(0.367 0.016 35.7);
-    --chart-5: oklch(0.268 0.011 36.5);
+    --background: #ffffff;
+    --foreground: var(--brand-ink);
+    --card: #ffffff;
+    --card-foreground: var(--brand-ink);
+    --popover: #ffffff;
+    --popover-foreground: var(--brand-ink);
+    --primary: var(--brand-ink);
+    --primary-foreground: #ffffff;
+    --secondary: var(--brand-peach);
+    --secondary-foreground: var(--brand-ink);
+    --muted: color-mix(in srgb, var(--brand-peach) 55%, white);
+    --muted-foreground: color-mix(in srgb, var(--brand-ink) 58%, white);
+    --accent: var(--brand-peach);
+    --accent-foreground: var(--brand-ink);
+    --destructive: #c43c2c;
+    --border: color-mix(in srgb, var(--brand-ink) 14%, white);
+    --input: color-mix(in srgb, var(--brand-ink) 14%, white);
+    --ring: var(--brand-terracotta);
+    --chart-1: var(--brand-terracotta);
+    --chart-2: var(--brand-ink);
+    --chart-3: color-mix(in srgb, var(--brand-peach) 70%, var(--brand-ink));
+    --chart-4: color-mix(in srgb, var(--brand-terracotta) 55%, white);
+    --chart-5: color-mix(in srgb, var(--brand-ink) 40%, white);
     --radius: 0.625rem;
-    --sidebar: oklch(0.986 0.002 67.8);
-    --sidebar-foreground: oklch(0.147 0.004 49.3);
-    --sidebar-primary: oklch(0.214 0.009 43.1);
-    --sidebar-primary-foreground: oklch(0.986 0.002 67.8);
-    --sidebar-accent: oklch(0.96 0.002 17.2);
-    --sidebar-accent-foreground: oklch(0.214 0.009 43.1);
-    --sidebar-border: oklch(0.922 0.005 34.3);
-    --sidebar-ring: oklch(0.714 0.014 41.2);
+    --sidebar: #ffffff;
+    --sidebar-foreground: var(--brand-ink);
+    --sidebar-primary: var(--brand-ink);
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: var(--brand-peach);
+    --sidebar-accent-foreground: var(--brand-ink);
+    --sidebar-border: color-mix(in srgb, var(--brand-ink) 14%, white);
+    --sidebar-ring: var(--brand-terracotta);
 }
 
 .dark {
-    --background: oklch(0.147 0.004 49.3);
-    --foreground: oklch(0.986 0.002 67.8);
-    --card: oklch(0.214 0.009 43.1);
-    --card-foreground: oklch(0.986 0.002 67.8);
-    --popover: oklch(0.214 0.009 43.1);
-    --popover-foreground: oklch(0.986 0.002 67.8);
-    --primary: oklch(0.922 0.005 34.3);
-    --primary-foreground: oklch(0.214 0.009 43.1);
-    --secondary: oklch(0.268 0.011 36.5);
-    --secondary-foreground: oklch(0.986 0.002 67.8);
-    --muted: oklch(0.268 0.011 36.5);
-    --muted-foreground: oklch(0.714 0.014 41.2);
-    --accent: oklch(0.268 0.011 36.5);
-    --accent-foreground: oklch(0.986 0.002 67.8);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.547 0.021 43.1);
-    --chart-1: oklch(0.868 0.007 39.5);
-    --chart-2: oklch(0.547 0.021 43.1);
-    --chart-3: oklch(0.438 0.017 39.3);
-    --chart-4: oklch(0.367 0.016 35.7);
-    --chart-5: oklch(0.268 0.011 36.5);
-    --sidebar: oklch(0.214 0.009 43.1);
-    --sidebar-foreground: oklch(0.986 0.002 67.8);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.986 0.002 67.8);
-    --sidebar-accent: oklch(0.268 0.011 36.5);
-    --sidebar-accent-foreground: oklch(0.986 0.002 67.8);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.547 0.021 43.1);
+    --background: var(--brand-ink);
+    --foreground: #ffffff;
+    --card: color-mix(in srgb, var(--brand-ink) 88%, white);
+    --card-foreground: #ffffff;
+    --popover: color-mix(in srgb, var(--brand-ink) 88%, white);
+    --popover-foreground: #ffffff;
+    --primary: var(--brand-terracotta);
+    --primary-foreground: var(--brand-ink);
+    --secondary: color-mix(in srgb, var(--brand-ink) 75%, white);
+    --secondary-foreground: #ffffff;
+    --muted: color-mix(in srgb, var(--brand-ink) 75%, white);
+    --muted-foreground: color-mix(in srgb, white 70%, var(--brand-ink));
+    --accent: color-mix(in srgb, var(--brand-ink) 75%, white);
+    --accent-foreground: #ffffff;
+    --destructive: #e86a5c;
+    --border: color-mix(in srgb, white 12%, transparent);
+    --input: color-mix(in srgb, white 16%, transparent);
+    --ring: var(--brand-terracotta);
+    --chart-1: var(--brand-terracotta);
+    --chart-2: var(--brand-peach);
+    --chart-3: color-mix(in srgb, var(--brand-terracotta) 55%, white);
+    --chart-4: color-mix(in srgb, var(--brand-peach) 70%, var(--brand-ink));
+    --chart-5: color-mix(in srgb, white 40%, var(--brand-ink));
+    --sidebar: color-mix(in srgb, var(--brand-ink) 88%, white);
+    --sidebar-foreground: #ffffff;
+    --sidebar-primary: var(--brand-terracotta);
+    --sidebar-primary-foreground: var(--brand-ink);
+    --sidebar-accent: color-mix(in srgb, var(--brand-ink) 75%, white);
+    --sidebar-accent-foreground: #ffffff;
+    --sidebar-border: color-mix(in srgb, white 12%, transparent);
+    --sidebar-ring: var(--brand-terracotta);
 }
 
 @theme inline {
     --font-sans: 'Geist Variable', sans-serif;
     --font-heading: 'Inter Variable', sans-serif;
     --font-display: 'Perfectly Nineties', sans-serif;
-    /* Brand palette (Figma) */
-    --color-ink: #263125;
-    --color-terracotta: #ff7e46;
+    /* Brand palette (Figma) — aliases of :root brand tokens */
+    --color-ink: var(--brand-ink);
+    --color-terracotta: var(--brand-terracotta);
     --color-sidebar-ring: var(--sidebar-ring);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -194,24 +199,24 @@
 /* Force the RSVP drawer to always render with the light palette, regardless
    of the resolved site theme (dark mode is applied via `.dark` on <html>). */
 .drawer-force-light {
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.147 0.004 49.3);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.147 0.004 49.3);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.147 0.004 49.3);
-    --primary: oklch(0.214 0.009 43.1);
-    --primary-foreground: oklch(0.986 0.002 67.8);
-    --secondary: oklch(0.96 0.002 17.2);
-    --secondary-foreground: oklch(0.214 0.009 43.1);
-    --muted: oklch(0.96 0.002 17.2);
-    --muted-foreground: oklch(0.547 0.021 43.1);
-    --accent: oklch(0.96 0.002 17.2);
-    --accent-foreground: oklch(0.214 0.009 43.1);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0.005 34.3);
-    --input: oklch(0.922 0.005 34.3);
-    --ring: oklch(0.714 0.014 41.2);
+    --background: #ffffff;
+    --foreground: var(--brand-ink);
+    --card: #ffffff;
+    --card-foreground: var(--brand-ink);
+    --popover: #ffffff;
+    --popover-foreground: var(--brand-ink);
+    --primary: var(--brand-ink);
+    --primary-foreground: #ffffff;
+    --secondary: var(--brand-peach);
+    --secondary-foreground: var(--brand-ink);
+    --muted: color-mix(in srgb, var(--brand-peach) 55%, white);
+    --muted-foreground: color-mix(in srgb, var(--brand-ink) 58%, white);
+    --accent: var(--brand-peach);
+    --accent-foreground: var(--brand-ink);
+    --destructive: #c43c2c;
+    --border: color-mix(in srgb, var(--brand-ink) 14%, white);
+    --input: color-mix(in srgb, var(--brand-ink) 14%, white);
+    --ring: var(--brand-terracotta);
     color-scheme: light;
 }
 

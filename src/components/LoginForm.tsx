@@ -27,13 +27,13 @@ export default function LoginForm() {
   }
 
   return (
-    <div className="flex min-h-svh items-center justify-center bg-background px-4">
+    <div className="flex min-h-svh items-center justify-center px-4">
       <div className="w-full max-w-sm space-y-6">
         <div className="flex flex-col items-center gap-2 text-center">
           <div className="flex size-10 items-center justify-center rounded-full bg-muted">
             <LockSimple weight="bold" className="size-5 text-muted-foreground" />
           </div>
-          <h1 className="font-display text-xl font-normal">Accès backoffice</h1>
+          <h1 className="font-display text-xl font-normal text-foreground">Accès backoffice</h1>
           <p className="text-sm text-muted-foreground">Entrez le mot de passe pour continuer.</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-3">
