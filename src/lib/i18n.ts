@@ -146,7 +146,8 @@ const fr: Dictionary = {
     companionNameLabel: "Nom",
     companionMealLabel: "Choix de plat",
     companionsLabel: "Personnes qui vous accompagnent",
-    companionsHint: "Ajoutez les personnes qui viennent avec vous.",
+    companionsHint:
+      "Ajoutez vos accompagnants. Les places étant limitées, nous reviendrons vers vous pour confirmer.",
     addCompanion: "Ajouter une personne",
     companionNamePlaceholder: "Nom de l'accompagnant",
     remove: "Retirer",
@@ -250,7 +251,8 @@ const en: Dictionary = {
     companionNameLabel: "Name",
     companionMealLabel: "Meal choice",
     companionsLabel: "People joining you",
-    companionsHint: "Add the people coming with you.",
+    companionsHint:
+      "Add anyone joining you. Seats are limited, so we'll get back to you to confirm.",
     addCompanion: "Add a person",
     companionNamePlaceholder: "Guest's name",
     remove: "Remove",

@@ -226,7 +226,7 @@ export default function RsvpDrawer({
                 {step === 0 ? t.title : t.companionsTitle}
               </DrawerTitle>
               {step === 1 && (
-                <DrawerDescription className="text-center">
+                <DrawerDescription className="text-center text-balance">
                   {t.companionsHint}
                 </DrawerDescription>
               )}
