@@ -13,7 +13,8 @@ import styles from "./page.module.css"
 
 export default async function PublicPage() {
   const locale = await getLocale()
-  const { landing } = getDictionary(locale)
+  const dict = getDictionary(locale)
+  const { landing } = dict
 
   const photos = photoSources.map((asset, i) => ({
     ...asset,
@@ -58,9 +59,10 @@ export default async function PublicPage() {
         venue={landing.hero.venue}
         date={landing.hero.date}
         buttonLabel={landing.closing.buttonLabel}
-        buttonHref={closingAssets.buttonHref}
         venueImage={closingAssets.venueImage}
         venueAlt={landing.closing.venueAlt}
+        dict={dict}
+        locale={locale}
       />
     </main>
   )

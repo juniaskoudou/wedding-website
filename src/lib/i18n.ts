@@ -38,7 +38,6 @@ export interface Dictionary {
   }
   rsvp: {
     title: string
-    subtitle: string
     nameLabel: string
     namePlaceholder: string
     attendingLabel: string
@@ -46,6 +45,7 @@ export interface Dictionary {
     no: string
     mealLabel: string
     meals: { fish: string; chicken: string; meat: string }
+    companionsTitle: string
     companionsLabel: string
     companionsHint: string
     addCompanion: string
@@ -59,6 +59,8 @@ export interface Dictionary {
     messagePlaceholder: string
     submit: string
     sending: string
+    next: string
+    back: string
     errorName: string
     errorAttending: string
     errorGeneric: string
@@ -129,7 +131,6 @@ const fr: Dictionary = {
   },
   rsvp: {
     title: "Confirmez votre présence",
-    subtitle: "Merci de répondre avant le 14 janvier 2026.",
     nameLabel: "Votre nom",
     namePlaceholder: "Jean Dupont",
     attendingLabel: "Serez-vous présent(e) ?",
@@ -137,6 +138,7 @@ const fr: Dictionary = {
     no: "Non, je ne peux pas",
     mealLabel: "Votre choix de plat",
     meals: { fish: "Poisson", chicken: "Poulet", meat: "Viande" },
+    companionsTitle: "Serez-vous accompagné(e) ?",
     companionsLabel: "Personnes qui vous accompagnent",
     companionsHint: "Ajoutez les personnes qui viennent avec vous.",
     addCompanion: "Ajouter une personne",
@@ -148,13 +150,16 @@ const fr: Dictionary = {
     emailPlaceholder: "vous@exemple.com",
     messageLabel: "Un mot pour les mariés (optionnel)",
     messagePlaceholder: "Votre message…",
-    submit: "Envoyer ma réponse",
+    submit: "Envoyer",
     sending: "Envoi…",
+    next: "Continuer",
+    back: "Retour",
     errorName: "Veuillez indiquer votre nom.",
     errorAttending: "Veuillez indiquer si vous serez présent(e).",
     errorGeneric: "Une erreur est survenue. Veuillez réessayer.",
     confirmTitle: "Merci !",
-    confirmAttending: "Nous avons bien reçu votre réponse. Hâte de célébrer avec vous !",
+    confirmAttending:
+      "Nous avons bien reçu votre réponse. Caroline ou Junias reviendra vers vous pour la suite.",
     confirmDeclined: "Merci pour votre réponse. Vous allez nous manquer !",
     backHome: "Retour à l'accueil",
   },
@@ -220,7 +225,6 @@ const en: Dictionary = {
   },
   rsvp: {
     title: "RSVP",
-    subtitle: "Please respond by January 14, 2026.",
     nameLabel: "Your name",
     namePlaceholder: "John Doe",
     attendingLabel: "Will you attend?",
@@ -228,6 +232,7 @@ const en: Dictionary = {
     no: "No, I can't make it",
     mealLabel: "Your meal choice",
     meals: { fish: "Fish", chicken: "Chicken", meat: "Meat" },
+    companionsTitle: "Will anyone join you?",
     companionsLabel: "People joining you",
     companionsHint: "Add the people coming with you.",
     addCompanion: "Add a person",
@@ -239,13 +244,16 @@ const en: Dictionary = {
     emailPlaceholder: "you@example.com",
     messageLabel: "A note for the couple (optional)",
     messagePlaceholder: "Your message…",
-    submit: "Send my response",
+    submit: "Send",
     sending: "Sending…",
+    next: "Continue",
+    back: "Back",
     errorName: "Please enter your name.",
     errorAttending: "Please tell us whether you'll attend.",
     errorGeneric: "Something went wrong. Please try again.",
     confirmTitle: "Thank you!",
-    confirmAttending: "We've received your response. Can't wait to celebrate with you!",
+    confirmAttending:
+      "We've received your response. Caroline or Junias will reach out to you about what's next.",
     confirmDeclined: "Thanks for letting us know. You'll be missed!",
     backHome: "Back home",
   },

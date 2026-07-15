@@ -1,22 +1,27 @@
 import Image from "next/image"
 import styles from "./Rsvp.module.css"
+import RsvpDrawer from "./RsvpDrawer"
+import type { Dictionary } from "@/lib/i18n"
+import type { Locale } from "@/lib/types"
 
 export default function Rsvp({
   intro,
   venue,
   date,
   buttonLabel,
-  buttonHref,
   venueImage,
   venueAlt,
+  dict,
+  locale,
 }: {
   intro: { before: string; highlight: string }
   venue: string
   date: string
   buttonLabel: string
-  buttonHref: string
   venueImage: string
   venueAlt: string
+  dict: Dictionary
+  locale: Locale
 }) {
   return (
     <section className={styles.section} aria-label="RSVP">
@@ -37,9 +42,12 @@ export default function Rsvp({
             <p>{date}</p>
           </div>
 
-          <a className={styles.button} href={buttonHref}>
-            {buttonLabel}
-          </a>
+          <RsvpDrawer
+            dict={dict}
+            locale={locale}
+            triggerLabel={buttonLabel}
+            triggerClassName={styles.button}
+          />
         </div>
       </div>
 

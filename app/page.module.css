@@ -13,6 +13,12 @@
    deliberate device-like frame rather than a stranded column. */
 @media (min-width: 768px) {
   .hero {
+    margin-block: 24px;
+    border: 1px solid rgba(38, 49, 37, 0.12);
+    border-radius: 28px;
+    /* clip (not hidden) so the rounded corners crop children without turning
+       .hero into a scroll container, which would break the Expect sticky pin. */
+    overflow: clip;
     box-shadow: 0 24px 70px -28px rgba(38, 49, 37, 0.28);
   }
 }
