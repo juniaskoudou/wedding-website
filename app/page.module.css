@@ -55,6 +55,61 @@
   margin-top: 6rem;
 }
 
+/* Hero entrance ------------------------------------------------------------
+   A gentle staggered rise-and-fade played once on load. The rose leads, then
+   the names, then the venue/date. Elements animate from a hidden state so
+   there's no flash of the final layout before the animation runs. The stagger
+   keeps to ~80ms between items so it reads as deliberate, not sluggish. */
+.rose,
+.copy h1,
+.details {
+  opacity: 0;
+  animation: hero-rise 0.8s var(--ease-out) forwards;
+}
+
+.rose {
+  animation-delay: 0.08s;
+}
+
+.copy h1 {
+  animation-delay: 0.16s;
+}
+
+.details {
+  animation-delay: 0.24s;
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reduced motion: keep a gentle fade (comprehension aid) but drop the
+   movement, rather than popping everything in instantly. */
+@media (prefers-reduced-motion: reduce) {
+  .rose,
+  .copy h1,
+  .details {
+    animation: hero-fade 0.4s ease forwards;
+    animation-delay: 0s;
+  }
+}
+
+@keyframes hero-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .copy h1,
 .details {
   font-family: "Perfectly Nineties", serif;

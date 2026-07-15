@@ -11,7 +11,10 @@
   position: sticky;
   top: 0;
   box-sizing: border-box;
-  min-height: 100svh;
+  /* Use lvh (toolbar-hidden height) so the pinned frame matches the viewport
+     that's actually in effect while scrolling on mobile. svh under-sizes it
+     once the address bar retracts, which left a gap above the footer. */
+  min-height: 100lvh;
   padding: 72px 0;
   display: flex;
   flex-direction: column;

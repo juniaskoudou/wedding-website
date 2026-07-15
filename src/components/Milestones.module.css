@@ -93,3 +93,60 @@
 .polaroidCol {
   flex: none;
 }
+
+/* Entrance ----------------------------------------------------------------
+   Intro, milestone items, and polaroid cascade in when the section first
+   scrolls into view (the `.revealed` class is toggled in JS). The per-item
+   movement lives on `.itemButton` so it never fights the active-state opacity
+   carried by `.item`. */
+.intro,
+.polaroidCol {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+
+.itemButton {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out);
+}
+
+.revealed .intro,
+.revealed .polaroidCol,
+.revealed .item .itemButton {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger: intro leads, milestones follow ~70ms apart, polaroid trails. */
+.revealed .item:nth-child(1) .itemButton {
+  transition-delay: 0.12s;
+}
+.revealed .item:nth-child(2) .itemButton {
+  transition-delay: 0.19s;
+}
+.revealed .item:nth-child(3) .itemButton {
+  transition-delay: 0.26s;
+}
+.revealed .polaroidCol {
+  transition-delay: 0.18s;
+}
+
+/* Reduced motion: keep the fade, drop the movement and the stagger delays. */
+@media (prefers-reduced-motion: reduce) {
+  .intro,
+  .polaroidCol,
+  .itemButton {
+    transform: none;
+    transition: opacity 0.4s ease;
+  }
+  .revealed .item .itemButton,
+  .revealed .polaroidCol {
+    transition-delay: 0s;
+  }
+}

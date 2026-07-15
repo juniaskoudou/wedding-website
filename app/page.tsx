@@ -3,6 +3,7 @@ import Carousel from "@/components/Carousel"
 import Milestones from "@/components/Milestones"
 import Expect from "@/components/Expect"
 import Rsvp from "@/components/Rsvp"
+import Reveal from "@/components/Reveal"
 import LocaleSwitcher from "@/components/LocaleSwitcher"
 import { getLocale } from "@/lib/locale"
 import { getDictionary } from "@/lib/i18n"
@@ -54,16 +55,18 @@ export default async function PublicPage() {
       <Carousel photos={photos} />
       <Milestones milestones={milestones} intro={landing.story.intro} />
       <Expect heading={landing.expect.heading} cards={expectCards} />
-      <Rsvp
-        intro={landing.closing.intro}
-        venue={landing.hero.venue}
-        date={landing.hero.date}
-        buttonLabel={landing.closing.buttonLabel}
-        venueImage={closingAssets.venueImage}
-        venueAlt={landing.closing.venueAlt}
-        dict={dict}
-        locale={locale}
-      />
+      <Reveal>
+        <Rsvp
+          intro={landing.closing.intro}
+          venue={landing.hero.venue}
+          date={landing.hero.date}
+          buttonLabel={landing.closing.buttonLabel}
+          venueImage={closingAssets.venueImage}
+          venueAlt={landing.closing.venueAlt}
+          dict={dict}
+          locale={locale}
+        />
+      </Reveal>
     </main>
   )
 }

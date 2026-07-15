@@ -73,6 +73,9 @@
     --bg-tint: 246 226 217;
     --bg-tint-opacity: 0.2;
 
+    /* Motion — one strong ease-out curve shared across entrance animations. */
+    --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+
     --background: oklch(1 0 0);
     --foreground: oklch(0.147 0.004 49.3);
     --card: oklch(1 0 0);

@@ -4,11 +4,12 @@
   z-index: 1;
   /* Scroll up and cover the pinned section above (which reserves one extra
      viewport of scroll for exactly this overlap). The pull-up MUST match the
-     reserved scroll exactly, so use the pin height the Expect section measures
-     and publishes (--expect-overlap, in px). Falls back to 100svh before JS
-     runs. min-height keeps the footer filling the viewport visually. */
-  margin-top: calc(-1 * var(--expect-overlap, 100svh));
-  min-height: max(var(--expect-overlap, 100svh), 100svh);
+     reserved scroll exactly, so use the      pin height the Expect section measures
+     and publishes (--expect-overlap, in px). Falls back to 100lvh before JS
+     runs. min-height uses lvh so the footer always fills the toolbar-hidden
+     viewport at the bottom (svh left a blank strip once the bar retracted). */
+  margin-top: calc(-1 * var(--expect-overlap, 100lvh));
+  min-height: max(var(--expect-overlap, 100lvh), 100lvh);
   display: flex;
   flex-direction: column;
   width: 100%;

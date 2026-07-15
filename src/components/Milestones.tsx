@@ -20,7 +20,39 @@ export default function Milestones({
   intro: Intro
 }) {
   const [active, setActive] = useState(0)
+  const [revealed, setRevealed] = useState(false)
+  const sectionRef = useRef<HTMLElement | null>(null)
   const itemRefs = useRef<Array<HTMLLIElement | null>>([])
+
+  // One-shot entrance: reveal (and stagger) the section the first time it
+  // scrolls into view. Reduced-motion users skip straight to the shown state.
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
+    if (reduceMotion) {
+      setRevealed(true)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setRevealed(true)
+            observer.disconnect()
+            break
+          }
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px", threshold: 0.1 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     const items = itemRefs.current.filter(Boolean) as HTMLLIElement[]
@@ -55,7 +87,11 @@ export default function Milestones({
   }, [])
 
   return (
-    <section className={styles.section} aria-label="Our story">
+    <section
+      ref={sectionRef}
+      className={`${styles.section}${revealed ? ` ${styles.revealed}` : ""}`}
+      aria-label="Our story"
+    >
       <p className={styles.intro}>
         {intro.before}
         <em className={styles.highlight}>{intro.highlight}</em>

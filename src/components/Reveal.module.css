@@ -1,0 +1,23 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out);
+}
+
+.shown {
+  opacity: 1;
+  /* Resolve to `none` (not translateY(0)) so no lingering transform / containing
+     block remains once the reveal has played. */
+  transform: none;
+}
+
+/* Reduced motion: keep the opacity fade (it aids comprehension of new content
+   entering) but drop the vertical movement. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transform: none;
+    transition: opacity 0.4s ease;
+  }
+}
