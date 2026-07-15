@@ -22,8 +22,7 @@
   cursor: pointer;
   /* Entrance: hidden until the gallery is revealed. Transform-only movement
      keeps embla's width measurement (layout-based) unaffected. The per-slide
-     transition-delay is applied inline so photos land one after another, left
-     to right. */
+     transition-delay is applied inline so the centre photo leads. */
   opacity: 0;
   transform: translateY(18px) scale(0.98);
   transition:

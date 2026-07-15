@@ -16,15 +16,13 @@ export default function Carousel({ photos }: { photos: Photo[] }) {
   })
 
   const [revealed, setRevealed] = useState(false)
-  // Per-slide step (ms) for the sequential entrance. Zeroed for reduced motion.
-  const [stagger, setStagger] = useState(150)
+  // Per-slide ripple step (ms). Zeroed for reduced motion so the fade is flat.
+  const [stagger, setStagger] = useState(60)
   const sectionRef = useRef<HTMLElement | null>(null)
 
-  // One-shot entrance: photos fade in one after another, left to right. The
-  // sequence is offset to begin at the first on-screen slide (the left peek),
-  // so the visible order reads left-peek → centre → right-peek with no dead
-  // time spent animating the off-screen slides. Fires once the gallery scrolls
-  // into view; reduced-motion users skip straight to the shown state.
+  // One-shot entrance: the centered photo appears first and its neighbours
+  // ripple outward once the gallery scrolls into view. Reduced-motion users
+  // skip straight to the shown state.
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
@@ -67,9 +65,7 @@ export default function Carousel({ photos }: { photos: Photo[] }) {
               key={photo.src}
               className={styles.slide}
               onClick={() => emblaApi?.scrollTo(i)}
-              style={{
-                transitionDelay: `${Math.max(0, i - (startIndex - 1)) * stagger}ms`,
-              }}
+              style={{ transitionDelay: `${Math.abs(i - startIndex) * stagger}ms` }}
             >
               <div className={styles.frame}>
                 <Image
