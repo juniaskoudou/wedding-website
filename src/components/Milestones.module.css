@@ -51,6 +51,19 @@
   opacity: 1;
 }
 
+/* Whole milestone is a click target that activates it (in addition to scroll). */
+.itemButton {
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
 .title {
   margin: 0 0 6px;
   font-family: var(--font-display);

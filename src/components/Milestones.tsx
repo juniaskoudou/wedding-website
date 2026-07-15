@@ -75,12 +75,19 @@ export default function Milestones({
               className={`${styles.item}${i === active ? ` ${styles.active}` : ""}`}
               aria-current={i === active}
             >
-              <h3 className={styles.title}>{m.title}</h3>
-              <p className={styles.meta}>
-                {m.date}
-                <br />
-                {m.location}
-              </p>
+              <button
+                type="button"
+                className={styles.itemButton}
+                onClick={() => setActive(i)}
+                aria-label={`${m.title} — ${m.date}, ${m.location}`}
+              >
+                <h3 className={styles.title}>{m.title}</h3>
+                <p className={styles.meta}>
+                  {m.date}
+                  <br />
+                  {m.location}
+                </p>
+              </button>
             </li>
           ))}
         </ol>
