@@ -7,7 +7,11 @@ export default async function AdminLayout({
   children: React.ReactNode
 }) {
   if (!(await isAuthed())) {
-    return <LoginForm />
+    return (
+      <div className="force-light">
+        <LoginForm />
+      </div>
+    )
   }
-  return <>{children}</>
+  return <div className="force-light">{children}</div>
 }

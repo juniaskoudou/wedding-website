@@ -196,8 +196,10 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Force the RSVP drawer to always render with the light palette, regardless
-   of the resolved site theme (dark mode is applied via `.dark` on <html>). */
+/* Force light palette regardless of the resolved site theme
+   (dark mode is applied via `.dark` on <html>). Used by the RSVP drawer
+   and the admin dashboard, which must always stay light. */
+.force-light,
 .drawer-force-light {
     --background: #ffffff;
     --foreground: var(--brand-ink);
