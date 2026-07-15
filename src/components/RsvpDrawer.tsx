@@ -178,7 +178,7 @@ export default function RsvpDrawer({
         </button>
       </DrawerTrigger>
 
-      <DrawerContent className="mx-auto h-[90svh] max-w-md">
+      <DrawerContent className="mx-auto h-[94svh] max-w-md">
         {done !== null ? (
           <>
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-6 text-center">

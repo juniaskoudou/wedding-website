@@ -37,7 +37,7 @@ function DrawerOverlay({
     <DialogPrimitive.Overlay
       data-slot="drawer-overlay"
       className={cn(
-        "fixed inset-0 z-50 bg-black/20 duration-200 supports-backdrop-filter:backdrop-blur-sm data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
+        "drawer-force-light fixed inset-0 z-50 bg-black/20 duration-200 supports-backdrop-filter:backdrop-blur-sm data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0",
         className
       )}
       {...props}
@@ -59,7 +59,7 @@ function DrawerContent({
       <DialogPrimitive.Content
         data-slot="drawer-content"
         className={cn(
-          "group/drawer-content fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto max-h-[90svh] flex-col rounded-none border-t bg-popover text-sm text-popover-foreground shadow-lg ring-1 ring-foreground/10 duration-300 outline-none data-open:animate-in data-open:slide-in-from-bottom data-closed:animate-out data-closed:slide-out-to-bottom",
+          "drawer-force-light group/drawer-content fixed inset-x-0 bottom-0 z-50 mt-24 flex h-auto max-h-[94svh] flex-col rounded-none border-t bg-popover text-sm text-popover-foreground shadow-lg ring-1 ring-foreground/10 duration-300 outline-none data-open:animate-in data-open:slide-in-from-bottom data-closed:animate-out data-closed:slide-out-to-bottom",
           className
         )}
         {...props}
