@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/drawer"
 import { Plus, Trash, Heart } from "@phosphor-icons/react"
 import FlowerMark from "@/components/FlowerMark"
+import FabricSwatch from "@/components/FabricSwatch"
 import type { Dictionary } from "@/lib/i18n"
 import type { Locale, Meal, RsvpSubmission } from "@/lib/types"
 import { submitRsvpAction } from "@/lib/rsvp-actions"
@@ -192,9 +193,23 @@ export default function RsvpDrawer({
               <DrawerTitle className="font-display text-3xl font-normal tracking-normal normal-case">
                 {t.confirmTitle}
               </DrawerTitle>
-              <DrawerDescription className="text-balance">
-                {done ? t.confirmAttending : t.confirmDeclined}
+              <DrawerDescription className="mx-auto max-w-sm text-balance">
+                {done ? `${t.confirmAttending} ${t.dressCodeHint}` : t.confirmDeclined}
               </DrawerDescription>
+
+              {done && (
+                <ul className="mt-3 flex flex-wrap justify-center gap-5">
+                  {t.dressColors.map((color) => (
+                    <li key={color.hex} className="flex flex-col items-center gap-2">
+                      <FabricSwatch
+                        color={color.hex}
+                        className="size-14 rounded-full ring-1 ring-foreground/10"
+                      />
+                      <span className="text-xs text-muted-foreground">{color.name}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
             <DrawerFooter>
               <DrawerClose asChild>

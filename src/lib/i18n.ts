@@ -69,6 +69,8 @@ export interface Dictionary {
     confirmTitle: string
     confirmAttending: string
     confirmDeclined: string
+    dressCodeHint: string
+    dressColors: { name: string; hex: string }[]
     backHome: string
   }
 }
@@ -165,7 +167,15 @@ const fr: Dictionary = {
     confirmAttending:
       "Nous avons bien reçu votre réponse. Caroline ou Junias reviendra vers vous pour la suite.",
     confirmDeclined: "Merci pour votre réponse. Vous allez nous manquer !",
-    backHome: "Retour à l'accueil",
+    dressCodeHint:
+      "Sans obligation, mais ces teintes s'accorderaient joliment à l'ambiance.",
+    dressColors: [
+      { name: "Vert sauge", hex: "#A3B18A" },
+      { name: "Terracotta", hex: "#E07A5F" },
+      { name: "Bordeaux", hex: "#7B2D3B" },
+      { name: "Rose", hex: "#E4B7B2" },
+    ],
+    backHome: "Fermer",
   },
 }
 
@@ -261,7 +271,15 @@ const en: Dictionary = {
     confirmAttending:
       "We've received your response. Caroline or Junias will reach out to you about what's next.",
     confirmDeclined: "Thanks for letting us know. You'll be missed!",
-    backHome: "Back home",
+    dressCodeHint:
+      "Optional, but these tones would blend beautifully with the vibe.",
+    dressColors: [
+      { name: "Sage green", hex: "#A3B18A" },
+      { name: "Terracotta", hex: "#E07A5F" },
+      { name: "Burgundy", hex: "#7B2D3B" },
+      { name: "Rose", hex: "#E4B7B2" },
+    ],
+    backHome: "Close",
   },
 }
 
