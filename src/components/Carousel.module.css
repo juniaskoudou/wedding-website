@@ -20,9 +20,9 @@
   min-width: 0;
   padding: 0 4px;
   cursor: pointer;
-  /* Entrance: hidden until the gallery is revealed. Transform-only movement
-     keeps embla's width measurement (layout-based) unaffected. The per-slide
-     transition-delay is applied inline so the centre photo leads. */
+  /* Entrance: hidden until the gallery is revealed, then all slides rise +
+     fade in together. Transform-only movement keeps embla's width measurement
+     (layout-based) unaffected. */
   opacity: 0;
   transform: translateY(18px) scale(0.98);
   transition:

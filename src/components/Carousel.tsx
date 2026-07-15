@@ -7,22 +7,18 @@ import type { Photo } from "@/data/photos"
 import styles from "./Carousel.module.css"
 
 export default function Carousel({ photos }: { photos: Photo[] }) {
-  const startIndex = Math.floor(photos.length / 2)
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
     containScroll: false,
-    startIndex,
+    startIndex: Math.floor(photos.length / 2),
   })
 
   const [revealed, setRevealed] = useState(false)
-  // Per-slide ripple step (ms). Zeroed for reduced motion so the fade is flat.
-  const [stagger, setStagger] = useState(60)
   const sectionRef = useRef<HTMLElement | null>(null)
 
-  // One-shot entrance: the centered photo appears first and its neighbours
-  // ripple outward once the gallery scrolls into view. Reduced-motion users
-  // skip straight to the shown state.
+  // One-shot entrance: the gallery rises + fades in as one when it scrolls into
+  // view. Reduced-motion users skip straight to the shown state.
   useEffect(() => {
     const el = sectionRef.current
     if (!el) return
@@ -31,7 +27,6 @@ export default function Carousel({ photos }: { photos: Photo[] }) {
       "(prefers-reduced-motion: reduce)"
     ).matches
     if (reduceMotion) {
-      setStagger(0)
       setRevealed(true)
       return
     }
@@ -65,7 +60,6 @@ export default function Carousel({ photos }: { photos: Photo[] }) {
               key={photo.src}
               className={styles.slide}
               onClick={() => emblaApi?.scrollTo(i)}
-              style={{ transitionDelay: `${Math.abs(i - startIndex) * stagger}ms` }}
             >
               <div className={styles.frame}>
                 <Image
