@@ -15,7 +15,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import { Plus, Trash, Check, Heart } from "@phosphor-icons/react"
+import { Plus, Trash, Heart } from "@phosphor-icons/react"
+import FlowerMark from "@/components/FlowerMark"
 import type { Dictionary } from "@/lib/i18n"
 import type { Locale, Meal, RsvpSubmission } from "@/lib/types"
 import { submitRsvpAction } from "@/lib/rsvp-actions"
@@ -177,17 +178,17 @@ export default function RsvpDrawer({
         </button>
       </DrawerTrigger>
 
-      <DrawerContent className="mx-auto h-[85svh] max-w-md">
+      <DrawerContent className="mx-auto h-[90svh] max-w-md">
         {done !== null ? (
           <>
             <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-4 px-6 text-center">
-              <div className="flex size-14 items-center justify-center rounded-full bg-muted">
-                {done ? (
-                  <Check weight="bold" className="size-6 text-emerald-600 dark:text-emerald-400" />
-                ) : (
+              {done ? (
+                <FlowerMark className="h-20 w-auto" />
+              ) : (
+                <div className="flex size-14 items-center justify-center rounded-full bg-muted">
                   <Heart weight="fill" className="size-6 text-muted-foreground" />
-                )}
-              </div>
+                </div>
+              )}
               <DrawerTitle className="font-display text-3xl font-normal tracking-normal normal-case">
                 {t.confirmTitle}
               </DrawerTitle>
@@ -295,35 +296,47 @@ export default function RsvpDrawer({
                 /* Step 2 — additional people */
                 <div className="grid gap-5">
                   {companions.map((c, i) => (
-                    <div key={i} className="grid gap-3 rounded-[8px] border border-border p-3">
-                      <div className="flex items-center gap-2">
+                    <div key={i} className="grid gap-6">
+                      <div className="grid gap-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <Label htmlFor={`companion-name-${i}`}>{t.companionNameLabel}</Label>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="icon-sm"
+                            onClick={() => removeCompanion(i)}
+                            className="-mr-2 -my-2 text-muted-foreground hover:text-destructive"
+                            aria-label={t.remove}
+                          >
+                            <Trash weight="bold" />
+                          </Button>
+                        </div>
                         <Input
-                          placeholder={t.companionNamePlaceholder}
+                          id={`companion-name-${i}`}
+                          placeholder={t.namePlaceholder}
                           value={c.name}
                           onChange={(e) => updateCompanion(i, { name: e.target.value })}
-                          className="flex-1"
                         />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon-sm"
-                          onClick={() => removeCompanion(i)}
-                          className="text-muted-foreground hover:text-destructive"
-                          aria-label={t.remove}
-                        >
-                          <Trash weight="bold" />
-                        </Button>
                       </div>
-                      <MealPicker
-                        value={c.meal}
-                        onChange={(m) => updateCompanion(i, { meal: m })}
-                        labels={t.meals}
-                      />
-                      <Input
-                        placeholder={t.dietaryPlaceholder}
-                        value={c.dietaryNotes}
-                        onChange={(e) => updateCompanion(i, { dietaryNotes: e.target.value })}
-                      />
+
+                      <div className="grid gap-2">
+                        <Label>{t.companionMealLabel}</Label>
+                        <MealPicker
+                          value={c.meal}
+                          onChange={(m) => updateCompanion(i, { meal: m })}
+                          labels={t.meals}
+                        />
+                      </div>
+
+                      <div className="grid gap-2">
+                        <Label htmlFor={`companion-diet-${i}`}>{t.dietaryLabel}</Label>
+                        <Input
+                          id={`companion-diet-${i}`}
+                          placeholder={t.dietaryPlaceholder}
+                          value={c.dietaryNotes}
+                          onChange={(e) => updateCompanion(i, { dietaryNotes: e.target.value })}
+                        />
+                      </div>
                     </div>
                   ))}
 

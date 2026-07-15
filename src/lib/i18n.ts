@@ -46,6 +46,8 @@ export interface Dictionary {
     mealLabel: string
     meals: { fish: string; chicken: string; meat: string }
     companionsTitle: string
+    companionNameLabel: string
+    companionMealLabel: string
     companionsLabel: string
     companionsHint: string
     addCompanion: string
@@ -139,6 +141,8 @@ const fr: Dictionary = {
     mealLabel: "Votre choix de plat",
     meals: { fish: "Poisson", chicken: "Poulet", meat: "Viande" },
     companionsTitle: "Serez-vous accompagné(e) ?",
+    companionNameLabel: "Nom",
+    companionMealLabel: "Choix de plat",
     companionsLabel: "Personnes qui vous accompagnent",
     companionsHint: "Ajoutez les personnes qui viennent avec vous.",
     addCompanion: "Ajouter une personne",
@@ -233,6 +237,8 @@ const en: Dictionary = {
     mealLabel: "Your meal choice",
     meals: { fish: "Fish", chicken: "Chicken", meat: "Meat" },
     companionsTitle: "Will anyone join you?",
+    companionNameLabel: "Name",
+    companionMealLabel: "Meal choice",
     companionsLabel: "People joining you",
     companionsHint: "Add the people coming with you.",
     addCompanion: "Add a person",

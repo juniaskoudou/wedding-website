@@ -1,4 +1,10 @@
-export default function FlowerMark({ className }: { className?: string }) {
+export default function FlowerMark({
+  className,
+  accent = "#263125",
+}: {
+  className?: string
+  accent?: string
+}) {
   return (
     <svg
       aria-hidden="true"
@@ -132,21 +138,21 @@ export default function FlowerMark({ className }: { className?: string }) {
       />
       <path
         d="M8.31379 26.53C8.57573 27.3683 8.83767 28.2066 9.09961 29.045"
-        stroke="#263125"
+        stroke={accent}
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M1.89012 28.5037C3.08756 29.586 4.28501 30.6684 5.48242 31.7508"
-        stroke="#263125"
+        stroke={accent}
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M0.500786 34.2809C1.29545 34.3787 2.09011 34.4766 2.88477 34.5744"
-        stroke="#263125"
+        stroke={accent}
         strokeMiterlimit="10"
         strokeLinecap="round"
         strokeLinejoin="round"
